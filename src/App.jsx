@@ -11,6 +11,7 @@ import Projects from './pages/Projects';
 import Research from './pages/Research';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import ProjectDetails from './pages/ProjectDetails';
 
 /**
  * AnimatedRoutes Component
@@ -27,6 +28,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:projectId" element={<ProjectDetails />} />
         <Route path="/research" element={<Research />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

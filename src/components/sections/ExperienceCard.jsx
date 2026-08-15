@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import GlassCard from '../ui/GlassCard';
 import Badge from '../ui/Badge';
+import { experienceBrandData } from '../../utils/data';
 
 /**
  * ExperienceCard Component
@@ -52,9 +53,11 @@ const ExperienceCard = forwardRef(function ExperienceCard(
     metrics = []
   } = experience ?? {};
 
+  const companyBrand = experienceBrandData[experience?.id] ?? null;
+
   // Active state styling - adds blue border and subtle glow
   const activeStyles = isActive
-    ? 'border-blue-400/50 shadow-blue-500/20 ring-1 ring-blue-400/30'
+    ? 'border-[var(--accent-teal)]/50 shadow-[rgba(45,212,191,0.12)] ring-1 ring-[var(--accent-teal)]/20'
     : '';
 
   /**
@@ -83,7 +86,7 @@ const ExperienceCard = forwardRef(function ExperienceCard(
       
       if (isMetric) {
         return (
-          <span key={index} className="text-blue-400 font-semibold">
+          <span key={index} className="text-[var(--accent-lime)] font-semibold">
             {part}
           </span>
         );
@@ -99,20 +102,34 @@ const ExperienceCard = forwardRef(function ExperienceCard(
       className={`p-6 transition-all duration-300 ${activeStyles}`}
     >
       {/* Header: Role and Date */}
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-        <h2 className="text-xl font-bold text-white">{role}</h2>
+      <div className="experience-card-heading">
+        <div className="experience-company-identity">
+          {companyBrand && (
+            <div className="experience-company-logo" style={{ '--company-color': companyBrand.color }}>
+              {companyBrand.logoUrl ? (
+                <img
+                  src={companyBrand.logoUrl}
+                  alt={`${companyBrand.name} logo`}
+                  onError={(event) => {
+                    event.currentTarget.style.display = 'none';
+                    event.currentTarget.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+              ) : null}
+              <span className={`${companyBrand.logoUrl ? 'hidden ' : ''}company-logo-fallback`}>
+                {companyBrand.fallback}
+              </span>
+            </div>
+          )}
+          <div>
+            <h2 className="text-xl font-bold text-white">{role}</h2>
+            <div className="experience-company-line">
+              <span>{company}</span>
+              {location && <span>• {location}</span>}
+            </div>
+          </div>
+        </div>
         <span className="text-sm text-gray-400 whitespace-nowrap">{date}</span>
-      </div>
-
-      {/* Subheader: Company and Location */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-4">
-        <span className="text-blue-400 font-medium">{company}</span>
-        {location && (
-          <>
-            <span className="hidden sm:inline text-gray-400">•</span>
-            <span className="text-gray-400 text-sm">{location}</span>
-          </>
-        )}
       </div>
 
       {/* Bullet Points */}
@@ -145,7 +162,7 @@ const ExperienceCard = forwardRef(function ExperienceCard(
           <div className="flex flex-wrap gap-3">
             {metrics.map((metric, index) => (
               <div key={index} className="flex items-center gap-2">
-                <span className="text-blue-400 font-bold text-lg">
+                <span className="text-[var(--accent-lime)] font-bold text-lg">
                   {metric.value}
                 </span>
                 <span className="text-gray-400 text-sm">

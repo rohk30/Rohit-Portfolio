@@ -47,7 +47,7 @@ function Projects() {
         {featuredCount > 0 && (
           <div className="mb-6">
             <p className="text-sm text-gray-400">
-              Showing {sortedProjects.length} projects • {featuredCount} featured
+              Showing {sortedProjects.length} selected projects • {featuredCount} featured
             </p>
           </div>
         )}

@@ -17,7 +17,7 @@ function Footer() {
   
   return (
     <footer 
-      className="glass-footer mt-auto"
+      className="portfolio-footer mt-auto"
       role="contentinfo"
     >
       <div className="container-portfolio py-6">
@@ -27,7 +27,7 @@ function Footer() {
             <span>© {currentYear} Rohit Kumar Birakayala.</span>
             <span className="hidden sm:inline">Made with</span>
             <Heart 
-              className="w-4 h-4 text-red-500 hidden sm:inline-block" 
+              className="w-4 h-4 text-[var(--accent-lime)] hidden sm:inline-block" 
               fill="currentColor"
               aria-hidden="true"
             />

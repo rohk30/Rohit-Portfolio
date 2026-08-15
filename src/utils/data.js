@@ -1,173 +1,226 @@
+import nielsenFullLogo from '../assets/images/experiences/Nielsen_full.png';
+import ubsFullLogo from '../assets/images/experiences/UBS_full.png';
+import talentRecruitFullLogo from '../assets/images/experiences/TR_full.png';
+import nielsenSmallLogo from '../assets/images/experiences/Nielsen_logo.png';
+import ubsSmallLogo from '../assets/images/experiences/UBS_logo.png';
+import talentRecruitSmallLogo from '../assets/images/experiences/TR_logo.png';
+
 /**
- * Portfolio Website Data Store
- * All content is stored as exported constants for easy updates without modifying UI components.
- * Requirement 11.1: Data_Store containing all content as JSON arrays
+ * Portfolio content store.
+ * Keep content here so the presentation layer stays reusable and easy to evolve.
  */
 
-// Navigation Data
-// Contains all navigation links for the portfolio
 export const navigationData = [
   { id: 'home', label: 'Home', path: '/' },
   { id: 'experience', label: 'Experience', path: '/experience' },
   { id: 'projects', label: 'Projects', path: '/projects' },
   { id: 'research', label: 'Research', path: '/research' },
   { id: 'about', label: 'About', path: '/about' },
-  { id: 'contact', label: 'Contact', path: '/contact' }
+  { id: 'contact', label: 'Contact', path: '/contact' },
 ];
 
-// Experience Data
-// All internship and work experience entries with required fields:
-// id, role, company, location, date, bullets, techStack, metrics (optional)
 export const experienceData = [
   {
-    id: 'gracenote',
+    id: 'nielsen',
     role: 'Data Scientist Intern',
     company: 'Gracenote, Nielsen',
+    companyShort: 'Nielsen',
     location: 'Bengaluru, India',
     date: 'Jan 2026 - Present',
     bullets: [
-      'Improved version-match precision from 48% to 87% by engineering a version-aware media matching pipeline using Claude Haiku/Sonnet hosted on Amazon EC2',
-      'Performed DSPY prompt optimization with COPRO, MIPRO & InferRules optimizers',
-      'Curated indexed parquet datasets from 10k+ production records'
+      'Improved version-match precision from 48% to 87% by engineering a version-aware media matching pipeline using Claude Haiku/Sonnet hosted on Amazon EC2 with semantic label extraction.',
+      'Optimized DSPy prompts with COPRO, MIPRO and InferRules, evaluated on curated GIST-sampled datasets.',
+      'Curated indexed Parquet datasets from 10k+ production records and ground-truth Program IDs, enabling scalable retrieval across 10k+ incoming mappables and avoiding infeasible O(n²) search.',
+      'Engineered an RCA-driven feedback pipeline for multilingual LLM translations, reducing editor violations by 25%+.',
     ],
-    techStack: ['Python', 'DSPy', 'Claude', 'Amazon EC2', 'Parquet'],
+    techStack: ['Python', 'Claude', 'DSPy', 'Amazon EC2', 'Parquet', 'LLMs'],
     metrics: [
-      { value: '87%', description: 'precision improvement from 48%' }
-    ]
+      { value: '48% → 87%', description: 'version-match precision' },
+      { value: '10k+', description: 'production records indexed' },
+      { value: '25%+', description: 'editor violation reduction' },
+    ],
   },
   {
     id: 'ubs',
-    role: 'Technology Intern',
-    company: 'UBS GOTO Technology',
+    role: 'Software Engineering Intern',
+    company: 'UBS – GOTO Technology',
+    companyShort: 'UBS',
     location: 'Pune, India',
-    date: 'Jun 2024 - Aug 2024',
+    date: 'May 2025 - Jul 2025',
     bullets: [
-      'Developed automated data pipeline for financial reporting systems',
-      'Implemented ETL processes using Python and SQL for large-scale data processing',
-      'Collaborated with cross-functional teams to streamline internal workflows'
+      'Automated classification workflows in ServiceNow using Predictive Intelligence, achieving over 80% precision and recall while applying boosting techniques to mitigate skewed data and class imbalance.',
+      'Identified the four highest-impact input features through targeted data analysis, improving automation by 20%.',
+      'Integrated JavaScript modules with the ServiceNow UI to retrieve and present predictive insights.',
     ],
-    techStack: ['Python', 'SQL', 'ETL', 'Data Pipeline', 'Financial Systems'],
+    techStack: ['Python', 'JavaScript', 'ServiceNow', 'Predictive Intelligence'],
     metrics: [
-      { value: '20%', description: 'automation improvement' }
-    ]
+      { value: '80%+', description: 'precision & recall' },
+      { value: '20%', description: 'automation improvement' },
+    ],
   },
   {
     id: 'talent-recruit',
-    role: 'Software Engineering Intern',
+    role: 'Machine Learning Intern',
     company: 'Talent Recruit',
-    location: 'Remote',
-    date: 'Jan 2024 - Mar 2024',
+    companyShort: 'TalentRecruit',
+    location: 'Bengaluru, India',
+    date: 'May 2024 - Jul 2024',
     bullets: [
-      'Built full-stack web application features for recruitment platform',
-      'Implemented RESTful APIs and integrated third-party services',
-      'Enhanced user interface components for improved candidate experience'
+      'Developed a RAG pipeline for matching top-k resumes with job descriptions using semantic similarity, incorporating MiniLM and BERT embeddings indexed in ChromaDB for efficient vector search.',
+      'Built a SpanCat-based parser for skill extraction and improved system accuracy by 15%+ through 2,000+ hard-negative samples generated using similarity thresholds and manual scoring.',
     ],
-    techStack: ['JavaScript', 'React', 'Node.js', 'REST APIs', 'MongoDB'],
-    metrics: []
-  }
+    techStack: ['Python', 'RAG', 'MiniLM', 'BERT', 'ChromaDB', 'NLP'],
+    metrics: [
+      { value: '15%+', description: 'accuracy improvement' },
+      { value: '2,000+', description: 'hard-negative samples' },
+    ],
+  },
 ];
 
-// Project Data
-// All project entries with required fields:
-// id, title, description, techStack, metrics, githubUrl, featured, image
-// Requirement 11.2: projectData array
+export const companyData = [
+  {
+    id: 'nielsen',
+    name: 'Nielsen',
+    role: 'Data Scientist Intern',
+    logoUrl: nielsenFullLogo,
+    fallback: 'N',
+    color: '#00a651',
+  },
+  {
+    id: 'ubs',
+    name: 'UBS',
+    role: 'Software Engineering Intern',
+    logoUrl: ubsFullLogo,
+    fallback: 'UBS',
+    color: '#e60000',
+  },
+  {
+    id: 'talent-recruit',
+    name: 'TalentRecruit',
+    role: 'Machine Learning Intern',
+    logoUrl: talentRecruitFullLogo,
+    fallback: 'TR',
+    color: '#20b486',
+  },
+];
+
+export const experienceBrandData = {
+  nielsen: { logoUrl: nielsenSmallLogo, fallback: 'N', color: '#00a651' },
+  ubs: { logoUrl: ubsSmallLogo, fallback: 'UBS', color: '#e60000' },
+  'talent-recruit': { logoUrl: talentRecruitSmallLogo, fallback: 'TR', color: '#20b486' },
+};
+
 export const projectData = [
   {
-    id: 'multi-agent-job',
-    title: 'Multi-Agent Job Application System',
-    description: 'Production-scale agentic AI system that automates the entire job application process. Uses multiple specialized AI agents for resume tailoring, cover letter generation, and application submission with human-in-the-loop validation.',
-    techStack: ['Python', 'LangChain', 'OpenAI', 'Selenium', 'CrewAI', 'FastAPI'],
-    metrics: ['Production-scale', 'Fully automated', '50+ applications/day'],
-    githubUrl: 'https://github.com/rohk30/multi-agent-job',
-    featured: true,
-    image: '/images/multi-agent-job.png'
-  },
-  {
     id: 'sickle-cell',
-    title: '4 Phase Sickle Cell Prediction',
-    description: 'End-to-end ML pipeline for sickle cell disease detection using microscopic blood cell images. Implements image segmentation with YOLO, GMM clustering for cell classification, and ensemble models for final prediction.',
-    techStack: ['Python', 'YOLO', 'GMM', 'scikit-learn', 'OpenCV', 'TensorFlow'],
-    metrics: ['98%+ precision', '4-phase pipeline', 'Real-time inference'],
-    githubUrl: 'https://github.com/rohk30/sickle-cell-prediction',
+    title: '4-Phase Sickle Cell Prediction',
+    eyebrow: 'Medical Imaging · Machine Learning',
+    description:
+      'A four-stage medical imaging pipeline combining cell segmentation, morphological feature extraction, PCA/GMM clustering and image-level classification.',
+    techStack: ['Python', 'Mask R-CNN', 'PyRadiomics', 'PCA', 'GMM', 'Logistic Regression'],
+    metrics: ['98%+ precision & recall', '4-stage pipeline', '30 morphological features'],
+    githubUrl: null,
     featured: true,
-    image: '/images/sickle-cell.png'
+    image: '/images/projects/sickle-cell.png',
+    caseStudy: true,
   },
   {
-    id: 'expense-splitter',
-    title: 'Group Expense Splitter App',
-    description: 'Mobile application for splitting expenses among groups with graph-based optimization algorithms to minimize the number of transactions needed to settle debts. Features real-time sync and smart debt simplification.',
-    techStack: ['Flutter', 'Dart', 'Firebase', 'Graph Algorithms', 'Provider'],
-    metrics: ['Graph-based optimization', 'Minimal transactions', 'Real-time sync'],
-    githubUrl: 'https://github.com/rohk30/expense-splitter',
+    id: 'signsentry',
+    title: 'SignSentry',
+    eyebrow: 'Computer Vision · Road Safety · Hackathon',
+    description:
+      'A road-safety system that detects important road signs with YOLO and communicates detected information through text-to-speech to support safer navigation.',
+    techStack: ['Python', 'YOLO', 'PyTorch', 'RoboFlow', 'Kaggle', 'pyttsx3'],
+    metrics: ['36-hour hackathon', 'Final Shark Tank round', 'SDG: Innovation & Infrastructure'],
+    githubUrl: null,
+    featured: true,
+    image: '/images/projects/signsentry.png',
+    caseStudy: true,
+  },
+  {
+    id: 'flashcard-generator',
+    title: 'Flashcard Generator from PDF',
+    eyebrow: 'Developer Tool · Parsing · Anki',
+    description:
+      'A personal Streamlit tool that turns GRE vocabulary PDFs into synchronized Anki flashcards through robust parsing, throttled imports and extensible content-extraction hooks.',
+    techStack: ['Python', 'Streamlit', 'Anki', 'PDF Parsing'],
+    metrics: ['Personal project', 'GRE vocabulary workflow', 'Anki sync'],
+    githubUrl: 'https://github.com/rohk30/Flashcard-Generator-from-PDF',
+    featured: true,
+    image: '/images/projects/flashcard-generator.png',
+    caseStudy: true,
+  },
+  {
+    id: 'splitwise',
+    title: 'Group Expense Splitter',
+    eyebrow: 'Flutter · Firebase · Algorithms',
+    description:
+      'A mobile expense-sharing application for group trips, with live balances and graph-based settlement optimization to reduce unnecessary repayment transactions.',
+    techStack: ['Flutter', 'Dart', 'Firebase', 'Graph Algorithms'],
+    metrics: ['Real-time sync', 'Debt simplification', 'Mobile application'],
+    githubUrl: null,
+    featured: true,
+    image: '/images/projects/splitwise.jpeg',
+    caseStudy: true,
+  },
+  {
+    id: 'face-emotions',
+    title: 'Face Emotion Classification',
+    eyebrow: 'Computer Vision · CNN',
+    description:
+      'A face-emotion detection model that classifies happy, sad, angry, disgust, surprise, fear and neutral expressions.',
+    techStack: ['Python', 'Keras', 'CNN', 'OpenCV'],
+    metrics: ['7 emotion classes', 'Keras model', 'Face detection'],
+    githubUrl: 'https://github.com/rohk30/FaceEmotionsDetection',
+    featured: true,
+    image: null,
+    caseStudy: false,
+  },
+  {
+    id: 'mynotes',
+    title: 'MyNotes',
+    eyebrow: 'Flutter · Personal Project',
+    description:
+      'One of my first Flutter projects — a simple notes application that marks the beginning of my mobile-development journey.',
+    techStack: ['Flutter', 'Dart'],
+    metrics: ['First Flutter project', 'Personal milestone'],
+    githubUrl: 'https://github.com/rohk30/Rohit-Notes2',
     featured: false,
-    image: '/images/expense-splitter.png'
-  }
+    image: null,
+    caseStudy: false,
+  },
+  {
+    id: 'tic-tac-toe',
+    title: 'Java Tic-Tac-Toe',
+    eyebrow: 'Java · Foundations',
+    description:
+      'A Tic-Tac-Toe game built from scratch in Java with graphics — an early project that captures the beginning of my programming journey.',
+    techStack: ['Java'],
+    metrics: ['Built from scratch', 'Early project'],
+    githubUrl: 'https://github.com/rohk30/Tic-Tac-Toe',
+    featured: false,
+    image: null,
+    caseStudy: false,
+  },
 ];
 
-// Research Data
-// All publication entries with required fields:
-// id, title, authors, venue, date, abstract, publicationUrl, codeUrl, category, citationCount, status
-// Categories: conference, journal, preprint, technical-report
-// Status: published, under-review, preprint
-// Requirement 11.3: researchData array
 export const researchData = [
   {
-    id: 'pub-agentic-ai',
-    title: 'Agentic AI Systems for Automated Workflow Orchestration',
-    authors: ['Rohit Kumar Birakayala', 'Research Advisor'],
-    venue: 'IEEE International Conference on Artificial Intelligence',
-    date: '2024-12',
-    abstract: 'This paper presents a novel framework for building production-ready agentic AI systems that can orchestrate complex workflows. We demonstrate how multiple specialized agents can collaborate effectively with human oversight to accomplish sophisticated tasks.',
-    publicationUrl: 'https://doi.org/10.1109/example',
-    codeUrl: 'https://github.com/rohk30/agentic-framework',
-    category: 'conference',
-    citationCount: 3,
-    status: 'published'
-  },
-  {
-    id: 'pub-medical-ml',
-    title: 'Deep Learning Approaches for Sickle Cell Disease Detection in Microscopic Images',
-    authors: ['Rohit Kumar Birakayala', 'Dr. Medical Research Lead'],
-    venue: 'Journal of Biomedical Informatics',
-    date: '2024-08',
-    abstract: 'We propose a four-phase machine learning pipeline combining YOLO-based segmentation, Gaussian Mixture Model clustering, and ensemble classification for accurate sickle cell disease detection from blood smear images, achieving 98%+ precision.',
-    publicationUrl: 'https://doi.org/10.1016/example',
-    codeUrl: 'https://github.com/rohk30/sickle-cell-prediction',
-    category: 'journal',
-    citationCount: 5,
-    status: 'published'
-  },
-  {
-    id: 'pub-llm-optimization',
-    title: 'Prompt Optimization Techniques for Large Language Models in Production Systems',
+    id: 'sickle-cell-research',
+    title: '4-Phase Sickle Cell Prediction',
     authors: ['Rohit Kumar Birakayala'],
-    venue: 'arXiv Preprint',
-    date: '2024-10',
-    abstract: 'An empirical study of prompt optimization strategies including COPRO, MIPRO, and InferRules optimizers in production LLM systems. We analyze their effectiveness in improving task-specific performance while maintaining cost efficiency.',
-    publicationUrl: 'https://arxiv.org/abs/example',
-    codeUrl: 'https://github.com/rohk30/prompt-optimization',
-    category: 'preprint',
-    citationCount: 0,
-    status: 'preprint'
-  },
-  {
-    id: 'pub-data-pipeline',
-    title: 'Scalable Data Pipeline Architecture for Media Matching Systems',
-    authors: ['Rohit Kumar Birakayala', 'Gracenote Research Team'],
-    venue: 'Technical Report - Gracenote Nielsen',
-    date: '2025-01',
-    abstract: 'This technical report describes the architecture and implementation of a scalable data pipeline for media matching, utilizing Claude LLMs and indexed Parquet datasets to improve version-match precision from 48% to 87%.',
+    venue: 'Independent research / final-year project',
+    date: '2026',
+    abstract:
+      'Research-driven medical imaging pipeline combining cell segmentation, morphological feature extraction, dimensionality reduction, GMM clustering and image-level classification.',
     publicationUrl: null,
     codeUrl: null,
     category: 'technical-report',
     citationCount: 0,
-    status: 'under-review'
-  }
+    status: 'ongoing',
+  },
 ];
 
-// Personal Data
-// Contains education, leadership, and hobbies information
-// Requirement 11.4: personalData with education, leadership, hobbies sub-objects
 export const personalData = {
   education: {
     institution: 'Vellore Institute of Technology',
@@ -175,31 +228,24 @@ export const personalData = {
     specialization: 'Computer Science with Data Science',
     dateRange: 'Sept 2022 - Jun 2026',
     gpa: '9.5',
-    futurePlans: "Master's degree abroad in Fall 2027"
+    futurePlans: "Master's applications for Fall 2027",
   },
   leadership: {
     role: 'Vice Chairperson',
-    organization: 'Juvenile Care NGO',
-    impact: '500+ attendees served'
+    organization: 'Juvenile Care NGO, VIT',
+    impact: '500+ attendees served',
   },
   hobbies: {
-    narrative: 'Beyond code, I love exploring new places and experiencing different cultures. Travel has taught me to adapt quickly, embrace uncertainty, and find creative solutions—skills that translate directly to problem-solving in tech.',
-    travelPhotos: [
-      { id: 'london', src: '/images/london.jpg', alt: 'Rohit visiting iconic landmarks in London, UK', location: 'London, UK' },
-      { id: 'paris', src: '/images/paris.jpg', alt: 'Rohit exploring the streets of Paris, France', location: 'Paris, France' },
-      { id: 'belgium', src: '/images/belgium.jpg', alt: 'Rohit traveling through scenic Belgium', location: 'Belgium' },
-      { id: 'andaman', src: '/images/andaman.jpg', alt: 'Rohit enjoying the beaches of Andaman Islands', location: 'Andaman Islands' }
-    ],
-    interests: ['Travel', 'Cricket (RCB)', 'Photography']
-  }
+    narrative:
+      'Away from code, I like being active, travelling and competing. Cricket, tennis and football are constants, and sport has been a big part of how I approach competition, discipline and teamwork.',
+    travelPhotos: [],
+    interests: ['Travel', 'Cricket', 'Tennis', 'Football', 'State-level athletics'],
+  },
 };
 
-// Contact Data
-// Contains contact information and social links
-// Requirement 11.4: contactData with email, linkedIn, github, resumePath fields
 export const contactData = {
   email: 'rohitkumar.birakayala@gmail.com',
-  linkedIn: 'https://www.linkedin.com/in/rohit-kumar-birakayala',
+  linkedIn: 'https://www.linkedin.com/in/rohit-kumar-birakayala-56a743257/',
   github: 'rohk30',
-  resumePath: '/docs/rohit-kumar-birakayala.pdf'
+  resumePath: '/docs/rohit-kumar-birakayala.pdf',
 };
