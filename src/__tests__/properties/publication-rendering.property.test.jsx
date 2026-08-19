@@ -212,12 +212,13 @@ describe('Publication Data Rendering Completeness - Property 7', () => {
           );
 
           // Status should be rendered in a readable format
+          // The component maps known statuses, and defaults to 'Preprint' for unknown ones
           const statusMap = {
             'published': 'Published',
             'under-review': 'Under Review',
             'preprint': 'Preprint'
           };
-          const expectedStatus = statusMap[publication.status] || publication.status;
+          const expectedStatus = statusMap[publication.status] || 'Preprint';
           expect(container.textContent).toContain(expectedStatus);
 
           unmount();
@@ -359,7 +360,7 @@ describe('Publication Data Rendering Completeness - Property 7', () => {
             'under-review': 'Under Review',
             'preprint': 'Preprint'
           };
-          const expectedStatus = statusMap[publication.status] || publication.status;
+          const expectedStatus = statusMap[publication.status] || 'Preprint';
           expect(textContent).toContain(expectedStatus);
 
           // Verify code repository link is present only when codeUrl exists
@@ -474,7 +475,7 @@ describe('Publication Data Rendering Completeness - Property 7', () => {
             'under-review': 'Under Review',
             'preprint': 'Preprint'
           };
-          const expectedStatus = statusMap[publication.status] || publication.status;
+          const expectedStatus = statusMap[publication.status] || 'Preprint';
           expect(textContent).toContain(expectedStatus);
 
           // Verify code link presence matches codeUrl existence

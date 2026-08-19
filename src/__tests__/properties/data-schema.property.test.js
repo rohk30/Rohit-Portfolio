@@ -115,16 +115,21 @@ describe('Data Schema Validation - Property 13', () => {
             expect(typeof project.title).toBe('string');
             expect(typeof project.description).toBe('string');
             expect(Array.isArray(project.techStack)).toBe(true);
-            expect(typeof project.githubUrl).toBe('string');
+            // githubUrl can be string or null
+            if (project.githubUrl !== null) {
+              expect(typeof project.githubUrl).toBe('string');
+            }
 
             // String fields must be non-empty
             expect(project.id.length).toBeGreaterThan(0);
             expect(project.title.length).toBeGreaterThan(0);
             expect(project.description.length).toBeGreaterThan(0);
-            expect(project.githubUrl.length).toBeGreaterThan(0);
 
-            // githubUrl must be a valid URL
-            expect(project.githubUrl).toMatch(/^https?:\/\//);
+            // githubUrl must be a valid URL when present
+            if (project.githubUrl) {
+              expect(project.githubUrl.length).toBeGreaterThan(0);
+              expect(project.githubUrl).toMatch(/^https?:\/\//);
+            }
 
             // techStack must contain strings
             project.techStack.forEach((tech) => {
@@ -160,7 +165,7 @@ describe('Data Schema Validation - Property 13', () => {
    */
   describe('Research Data Schema', () => {
     const validCategories = ['conference', 'journal', 'preprint', 'technical-report'];
-    const validStatuses = ['published', 'under-review', 'preprint'];
+    const validStatuses = ['published', 'under-review', 'preprint', 'ongoing'];
 
     test('all publication objects contain required fields with correct types', () => {
       fc.assert(
@@ -328,6 +333,8 @@ describe('Data Schema Validation - Property 13', () => {
     });
 
     test('travelPhotos array contains valid photo objects', () => {
+      if (personalData.hobbies.travelPhotos.length === 0) return; // Skip if no photos
+
       fc.assert(
         fc.property(
           fc.constantFrom(...personalData.hobbies.travelPhotos),

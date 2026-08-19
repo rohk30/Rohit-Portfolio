@@ -1,0 +1,53 @@
+// src/config/shotNavigation.js
+export const SHOT_TARGETS = [
+  {
+    id: 'cover-drive',
+    label: 'Cover Drive',
+    path: '/experience',
+    position: { x: 72, y: 28 },
+    bezierControl: { cx1: 55, cy1: 42, cx2: 68, cy2: 32 },
+    ariaLabel: 'Navigate to Experience section via Cover drive',
+  },
+  {
+    id: 'pull-shot',
+    label: 'Pull Shot',
+    path: '/projects',
+    position: { x: 22, y: 30 },
+    bezierControl: { cx1: 40, cy1: 45, cx2: 28, cy2: 35 },
+    ariaLabel: 'Navigate to Projects section via Pull shot',
+  },
+  {
+    id: 'straight-drive',
+    label: 'Straight Drive',
+    path: '/research',
+    position: { x: 50, y: 10 },
+    bezierControl: { cx1: 50, cy1: 38, cx2: 50, cy2: 20 },
+    ariaLabel: 'Navigate to Research section via Straight drive',
+  },
+  {
+    id: 'flick',
+    label: 'Flick',
+    path: '/about',
+    position: { x: 18, y: 60 },
+    bezierControl: { cx1: 38, cy1: 52, cx2: 24, cy2: 58 },
+    ariaLabel: 'Navigate to About section via Flick',
+  },
+  {
+    id: 'caught-at-slip',
+    label: 'Caught at Slip',
+    subLabel: 'Caught your attention?',
+    path: '/contact',
+    position: { x: 78, y: 62 },
+    bezierControl: { cx1: 58, cy1: 55, cx2: 72, cy2: 60 },
+    ariaLabel: 'Navigate to Contact section via Caught at slip',
+  },
+  {
+    id: 'defensive-block',
+    label: 'Defence',
+    subLabel: 'The full picture',
+    path: '/overview',
+    position: { x: 50, y: 78 },
+    bezierControl: { cx1: 50, cy1: 60, cx2: 50, cy2: 72 },
+    ariaLabel: 'Navigate to Overview section via Defence block',
+  },
+];

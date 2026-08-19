@@ -55,9 +55,9 @@ const ExperienceCard = forwardRef(function ExperienceCard(
 
   const companyBrand = experienceBrandData[experience?.id] ?? null;
 
-  // Active state styling - adds blue border and subtle glow
+  // Active state styling - adds gold border and subtle glow
   const activeStyles = isActive
-    ? 'border-[var(--accent-teal)]/50 shadow-[rgba(45,212,191,0.12)] ring-1 ring-[var(--accent-teal)]/20'
+    ? 'border-[var(--accent-gold)]/50 shadow-[rgba(201,162,39,0.12)] ring-1 ring-[var(--accent-gold)]/20'
     : '';
 
   /**
@@ -86,7 +86,7 @@ const ExperienceCard = forwardRef(function ExperienceCard(
       
       if (isMetric) {
         return (
-          <span key={index} className="text-[var(--accent-lime)] font-semibold">
+          <span key={index} className="text-[var(--accent-gold)] font-semibold">
             {part}
           </span>
         );
@@ -122,14 +122,14 @@ const ExperienceCard = forwardRef(function ExperienceCard(
             </div>
           )}
           <div>
-            <h2 className="text-xl font-bold text-white">{role}</h2>
+            <h2 className="text-xl font-bold text-[var(--text)]">{role}</h2>
             <div className="experience-company-line">
               <span>{company}</span>
               {location && <span>• {location}</span>}
             </div>
           </div>
         </div>
-        <span className="text-sm text-gray-400 whitespace-nowrap">{date}</span>
+        <span className="text-sm text-[var(--text-soft)] whitespace-nowrap">{date}</span>
       </div>
 
       {/* Bullet Points */}
@@ -138,9 +138,9 @@ const ExperienceCard = forwardRef(function ExperienceCard(
           {bullets.map((bullet, index) => (
             <li
               key={index}
-              className="text-gray-300 text-sm leading-relaxed flex items-start gap-2"
+              className="text-[var(--text-soft)] text-sm leading-relaxed flex items-start gap-2"
             >
-              <span className="text-blue-400 mt-1.5 flex-shrink-0">•</span>
+              <span className="text-[var(--accent-gold)] mt-1.5 flex-shrink-0">•</span>
               <span>{highlightMetrics(bullet)}</span>
             </li>
           ))}
@@ -158,14 +158,14 @@ const ExperienceCard = forwardRef(function ExperienceCard(
 
       {/* Metrics Summary (if metrics exist, show as highlighted badges) */}
       {metrics.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-white/10">
+        <div className="mt-4 pt-4 border-t border-[var(--glass-border)]">
           <div className="flex flex-wrap gap-3">
             {metrics.map((metric, index) => (
               <div key={index} className="flex items-center gap-2">
-                <span className="text-[var(--accent-lime)] font-bold text-lg">
+                <span className="text-[var(--accent-gold)] font-bold text-lg">
                   {metric.value}
                 </span>
-                <span className="text-gray-400 text-sm">
+                <span className="text-[var(--text-soft)] text-sm">
                   {metric.description}
                 </span>
               </div>

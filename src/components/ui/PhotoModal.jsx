@@ -172,10 +172,10 @@ function PhotoModal({ isOpen, onClose, imageSrc, imageAlt }) {
               ref={closeButtonRef}
               onClick={onClose}
               className="absolute -top-12 right-0 md:top-0 md:-right-12 p-2 rounded-full 
-                         bg-slate-900/60 border border-white/10 text-white 
-                         hover:bg-slate-800/80 hover:border-white/20 
+                         bg-[var(--glass-bg)] border border-[var(--glass-border)] text-[var(--text)] 
+                         hover:bg-[var(--glass-bg)] hover:border-[var(--glass-hover-border)] 
                          transition-all duration-200
-                         focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-transparent"
+                         focus:outline-none focus:ring-2 focus:ring-[var(--accent-gold)] focus:ring-offset-2 focus:ring-offset-transparent"
               aria-label="Close modal"
               type="button"
             >
@@ -183,7 +183,7 @@ function PhotoModal({ isOpen, onClose, imageSrc, imageAlt }) {
             </button>
 
             {/* Image container with glassmorphism frame */}
-            <div className="bg-slate-900/40 backdrop-blur-md border border-white/10 shadow-2xl rounded-2xl overflow-hidden p-2">
+            <div className="bg-[var(--glass-card-bg)] backdrop-blur-md border border-[var(--glass-border)] shadow-2xl rounded-2xl overflow-hidden p-2">
               <img
                 src={imageSrc}
                 alt={imageAlt}
@@ -193,7 +193,7 @@ function PhotoModal({ isOpen, onClose, imageSrc, imageAlt }) {
 
             {/* Image caption */}
             {imageAlt && (
-              <p className="mt-4 text-gray-400 text-center text-sm">{imageAlt}</p>
+              <p className="mt-4 text-[var(--text-soft)] text-center text-sm">{imageAlt}</p>
             )}
           </motion.div>
         </motion.div>

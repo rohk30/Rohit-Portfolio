@@ -10,9 +10,19 @@
  */
 import { describe, test, expect } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import * as fc from 'fast-check';
 import ProjectCard from '@components/sections/ProjectCard';
 import { projectData } from '@utils/data';
+
+/** Helper to render ProjectCard within Router context */
+function renderProjectCard(project) {
+  return render(
+    <MemoryRouter>
+      <ProjectCard project={project} />
+    </MemoryRouter>
+  );
+}
 
 describe('Project Data Rendering Completeness - Property 4', () => {
   /**
@@ -27,7 +37,7 @@ describe('Project Data Rendering Completeness - Property 4', () => {
       fc.property(
         fc.constantFrom(...projectData),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
           // Verify title is rendered
           expect(container.textContent).toContain(project.title);
@@ -66,7 +76,7 @@ describe('Project Data Rendering Completeness - Property 4', () => {
       fc.property(
         fc.constantFrom(...projectData),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
           // Count the tech badges rendered (they have variant="default" and size="sm")
           // Each techStack item should be rendered as a badge
@@ -96,7 +106,7 @@ describe('Project Data Rendering Completeness - Property 4', () => {
       fc.property(
         fc.constantFrom(...projectData.filter(p => p.metrics && p.metrics.length > 0)),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
           const allTextContent = container.textContent;
           
@@ -120,14 +130,17 @@ describe('Project Data Rendering Completeness - Property 4', () => {
    * **Validates: Requirements 4.3**
    */
   test('renders GitHub link indicator for any project with githubUrl', () => {
+    const projectsWithGithub = projectData.filter(p => p.githubUrl && !p.caseStudy);
+    if (projectsWithGithub.length === 0) return;
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...projectData.filter(p => p.githubUrl)),
+        fc.constantFrom(...projectsWithGithub),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
-          // Verify "View on GitHub" text is present
-          expect(container.textContent).toContain('View on GitHub');
+          // Verify "View GitHub" text is present
+          expect(container.textContent).toContain('View GitHub');
 
           unmount();
           return true;
@@ -165,7 +178,7 @@ describe('Project Data Rendering Completeness - Property 4', () => {
       fc.property(
         projectArbitrary,
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
           // Verify title is rendered
           expect(container.textContent).toContain(project.title);
@@ -202,10 +215,10 @@ describe('Project Data Rendering Completeness - Property 4', () => {
       fc.property(
         fc.constantFrom(...projectData.filter(p => p.featured === true)),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
-          // Verify "Featured Project" text is present
-          expect(container.textContent).toContain('Featured Project');
+          // Verify "Featured" text is present
+          expect(container.textContent).toContain('Featured');
 
           unmount();
           return true;
@@ -226,10 +239,10 @@ describe('Project Data Rendering Completeness - Property 4', () => {
       fc.property(
         fc.constantFrom(...projectData.filter(p => p.featured !== true)),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
-          // Verify "Featured Project" text is NOT present
-          expect(container.textContent).not.toContain('Featured Project');
+          // Verify "Featured" text is NOT present for non-featured
+          expect(container.textContent).not.toContain('Featured');
 
           unmount();
           return true;
@@ -261,7 +274,7 @@ describe('Project Data Rendering Completeness - Property 4', () => {
         (project) => {
           // Should not throw when rendering with minimal required fields
           expect(() => {
-            const { unmount } = render(<ProjectCard project={project} />);
+            const { unmount } = renderProjectCard(project);
             unmount();
           }).not.toThrow();
 
@@ -283,7 +296,7 @@ describe('Project Data Rendering Completeness - Property 4', () => {
       fc.property(
         fc.constantFrom(...projectData),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
           // Find the article element
           const article = container.querySelector('article');

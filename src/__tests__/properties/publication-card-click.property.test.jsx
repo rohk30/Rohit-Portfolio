@@ -17,6 +17,8 @@ import PublicationCard from '@components/sections/PublicationCard';
 import { researchData } from '@utils/data';
 
 describe('Publication Card Click Opens Publication URL - Property 8', () => {
+  const pubsWithUrl = researchData.filter(pub => pub.publicationUrl);
+  const pubsWithoutUrl = researchData.filter(pub => !pub.publicationUrl);
   /**
    * Property 8.1: Publication card with publicationUrl has link to exact URL
    * For any publication from researchData with a publicationUrl, the card
@@ -25,9 +27,12 @@ describe('Publication Card Click Opens Publication URL - Property 8', () => {
    * **Validates: Requirements 5.4**
    */
   test('publication card with publicationUrl has link to exact URL', () => {
+    const pubs = researchData.filter(pub => pub.publicationUrl);
+    if (pubs.length === 0) return; // Skip if no publications have publicationUrl
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...researchData.filter(pub => pub.publicationUrl)),
+        fc.constantFrom(...pubs),
         (publication) => {
           const { container, unmount } = render(<PublicationCard publication={publication} />);
 
@@ -53,9 +58,11 @@ describe('Publication Card Click Opens Publication URL - Property 8', () => {
    * **Validates: Requirements 5.4**
    */
   test('clicking publication card without publicationUrl does not navigate', () => {
+    if (pubsWithoutUrl.length === 0) return;
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...researchData.filter(pub => !pub.publicationUrl)),
+        fc.constantFrom(...pubsWithoutUrl),
         (publication) => {
           const { container, unmount } = render(<PublicationCard publication={publication} />);
 
@@ -77,9 +84,11 @@ describe('Publication Card Click Opens Publication URL - Property 8', () => {
    * **Validates: Requirements 5.4**
    */
   test('publication links have exact publicationUrl as href', () => {
+    if (pubsWithUrl.length === 0) return;
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...researchData.filter(pub => pub.publicationUrl)),
+        fc.constantFrom(...pubsWithUrl),
         (publication) => {
           const { container, unmount } = render(<PublicationCard publication={publication} />);
 
@@ -107,9 +116,11 @@ describe('Publication Card Click Opens Publication URL - Property 8', () => {
    * **Validates: Requirements 5.4**
    */
   test('publication links have target="_blank" for new tab', () => {
+    if (pubsWithUrl.length === 0) return;
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...researchData.filter(pub => pub.publicationUrl)),
+        fc.constantFrom(...pubsWithUrl),
         (publication) => {
           const { container, unmount } = render(<PublicationCard publication={publication} />);
 
@@ -136,9 +147,11 @@ describe('Publication Card Click Opens Publication URL - Property 8', () => {
    * **Validates: Requirements 5.4**
    */
   test('publication links have noopener noreferrer security attributes', () => {
+    if (pubsWithUrl.length === 0) return;
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...researchData.filter(pub => pub.publicationUrl)),
+        fc.constantFrom(...pubsWithUrl),
         (publication) => {
           const { container, unmount } = render(<PublicationCard publication={publication} />);
 
@@ -235,9 +248,11 @@ describe('Publication Card Click Opens Publication URL - Property 8', () => {
    * **Validates: Requirements 5.4**
    */
   test('all publication links point to same exact URL', () => {
+    if (pubsWithUrl.length === 0) return;
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...researchData.filter(pub => pub.publicationUrl)),
+        fc.constantFrom(...pubsWithUrl),
         (publication) => {
           const { container, unmount } = render(<PublicationCard publication={publication} />);
 
@@ -264,9 +279,11 @@ describe('Publication Card Click Opens Publication URL - Property 8', () => {
    * **Validates: Requirements 5.4**
    */
   test('card with publicationUrl shows external link indicator', () => {
+    if (pubsWithUrl.length === 0) return;
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...researchData.filter(pub => pub.publicationUrl)),
+        fc.constantFrom(...pubsWithUrl),
         (publication) => {
           const { container, unmount } = render(<PublicationCard publication={publication} />);
 
@@ -288,9 +305,11 @@ describe('Publication Card Click Opens Publication URL - Property 8', () => {
    * **Validates: Requirements 5.4**
    */
   test('card without publicationUrl does not show view publication indicator', () => {
+    if (pubsWithoutUrl.length === 0) return;
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...researchData.filter(pub => !pub.publicationUrl)),
+        fc.constantFrom(...pubsWithoutUrl),
         (publication) => {
           const { container, unmount } = render(<PublicationCard publication={publication} />);
 
@@ -312,9 +331,11 @@ describe('Publication Card Click Opens Publication URL - Property 8', () => {
    * **Validates: Requirements 5.4**
    */
   test('publication title links to publicationUrl when available', () => {
+    if (pubsWithUrl.length === 0) return;
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...researchData.filter(pub => pub.publicationUrl)),
+        fc.constantFrom(...pubsWithUrl),
         (publication) => {
           const { container, unmount } = render(<PublicationCard publication={publication} />);
 

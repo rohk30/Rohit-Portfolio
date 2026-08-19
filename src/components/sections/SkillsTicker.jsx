@@ -67,15 +67,15 @@ function SkillsTicker() {
       className="col-span-1 p-4 md:p-5 overflow-hidden"
     >
       {/* Section label */}
-      <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">
+      <h3 className="text-sm font-semibold text-[var(--text-soft)] uppercase tracking-wider mb-3">
         Tech Stack
       </h3>
       
       {/* Ticker container with overflow hidden */}
       <div className="relative overflow-hidden">
         {/* Gradient fade edges for visual polish */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-slate-900/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-900/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[var(--bg)]/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[var(--bg)]/80 to-transparent z-10 pointer-events-none" />
         
         {/* Scrolling ticker track */}
         <div 
@@ -87,7 +87,7 @@ function SkillsTicker() {
             return (
               <div
                 key={`${skill.name}-${index}`}
-                className="flex-shrink-0 flex items-center justify-center w-12 h-12 bg-slate-800/60 rounded-xl border border-white/10 transition-all duration-300 hover:scale-110 hover:border-white/20 group"
+                className="flex-shrink-0 flex items-center justify-center w-12 h-12 bg-[var(--glass-card-bg)] rounded-xl border border-[var(--glass-border)] transition-all duration-300 hover:scale-110 hover:border-[var(--glass-hover-border)] group"
                 title={skill.name}
               >
                 <IconComponent 

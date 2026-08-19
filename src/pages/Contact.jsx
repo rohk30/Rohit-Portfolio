@@ -2,6 +2,7 @@ import { Mail, Briefcase, GitBranch, FileDown } from 'lucide-react';
 import PageTransition from '../components/layout/PageTransition';
 import GlassCard from '../components/ui/GlassCard';
 import Button from '../components/ui/Button';
+import PlayNextBallWidget from '../components/cricket/PlayNextBallWidget';
 import { contactData } from '../utils/data';
 
 /**
@@ -32,10 +33,10 @@ function Contact() {
       <div className="container-portfolio py-8 md:py-12 flex items-center justify-center min-h-[calc(100vh-6rem)]">
         <GlassCard className="w-full max-w-lg p-8 md:p-10 text-center">
           {/* Header */}
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-[var(--text)] mb-2">
             Get in Touch
           </h1>
-          <p className="text-gray-400 mb-8">
+          <p className="text-[var(--text-soft)] mb-8">
             Feel free to reach out for collaborations, opportunities, or just to say hello!
           </p>
 
@@ -45,11 +46,11 @@ function Contact() {
             {email && (
               <a
                 href={`mailto:${email}`}
-                className="flex items-center justify-center gap-3 p-4 rounded-xl bg-slate-800/40 border border-white/10 hover:bg-slate-700/50 hover:border-white/20 transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="flex items-center justify-center gap-3 p-4 rounded-xl bg-[var(--glass-card-bg)] border border-[var(--glass-border)] hover:bg-[var(--glass-bg)] hover:border-[var(--glass-hover-border)] transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d]"
                 aria-label={`Send email to ${email}`}
               >
-                <Mail className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors" />
-                <span className="text-white group-hover:text-blue-300 transition-colors">
+                <Mail className="w-5 h-5 text-[var(--accent-gold)] group-hover:text-[var(--accent-gold)] transition-colors" />
+                <span className="text-[var(--text)] group-hover:text-[var(--accent-gold)] transition-colors">
                   {email}
                 </span>
               </a>
@@ -61,11 +62,11 @@ function Contact() {
                 href={linkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 p-4 rounded-xl bg-slate-800/40 border border-white/10 hover:bg-slate-700/50 hover:border-white/20 transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="flex items-center justify-center gap-3 p-4 rounded-xl bg-[var(--glass-card-bg)] border border-[var(--glass-border)] hover:bg-[var(--glass-bg)] hover:border-[var(--glass-hover-border)] transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d]"
                 aria-label="Visit LinkedIn profile"
               >
-                <Briefcase className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors" />
-                <span className="text-white group-hover:text-blue-300 transition-colors">
+                <Briefcase className="w-5 h-5 text-[var(--accent-gold)] group-hover:text-[var(--accent-gold)] transition-colors" />
+                <span className="text-[var(--text)] group-hover:text-[var(--accent-gold)] transition-colors">
                   LinkedIn Profile
                 </span>
               </a>
@@ -77,11 +78,11 @@ function Contact() {
                 href={`https://github.com/${github}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 p-4 rounded-xl bg-slate-800/40 border border-white/10 hover:bg-slate-700/50 hover:border-white/20 transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="flex items-center justify-center gap-3 p-4 rounded-xl bg-[var(--glass-card-bg)] border border-[var(--glass-border)] hover:bg-[var(--glass-bg)] hover:border-[var(--glass-hover-border)] transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d]"
                 aria-label={`Visit GitHub profile ${github}`}
               >
-                <GitBranch className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors" />
-                <span className="text-white group-hover:text-blue-300 transition-colors">
+                <GitBranch className="w-5 h-5 text-[var(--accent-gold)] group-hover:text-[var(--accent-gold)] transition-colors" />
+                <span className="text-[var(--text)] group-hover:text-[var(--accent-gold)] transition-colors">
                   github.com/{github}
                 </span>
               </a>
@@ -101,12 +102,15 @@ function Contact() {
               Download Resume
             </Button>
           ) : (
-            <div className="p-4 rounded-xl bg-slate-800/30 border border-white/5 text-gray-500 text-sm">
+            <div className="p-4 rounded-xl bg-[var(--glass-card-bg)] border border-[var(--glass-border)] text-[var(--text-soft)] text-sm">
               Resume currently unavailable
             </div>
           )}
         </GlassCard>
       </div>
+
+      {/* Cricket-themed navigation widget */}
+      <PlayNextBallWidget currentPath="/contact" />
     </PageTransition>
   );
 }

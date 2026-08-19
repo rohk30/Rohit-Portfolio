@@ -33,7 +33,7 @@ const Button = forwardRef(function Button(
 ) {
   // Base classes for all buttons
   const baseClasses = 
-    'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900';
+    'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d]';
 
   // Size variant classes
   const sizeClasses = {
@@ -45,11 +45,11 @@ const Button = forwardRef(function Button(
   // Visual variant classes
   const variantClasses = {
     primary: 
-      'bg-blue-500 text-white border border-blue-500 hover:bg-blue-600 hover:border-blue-600 active:bg-blue-700',
+      'bg-[var(--accent-gold)] text-[#0d1f0d] border border-[var(--accent-gold)] hover:bg-[var(--accent-gold)]/90 hover:border-[var(--accent-gold)]/90 active:bg-[var(--accent-gold)]/80',
     secondary: 
-      'bg-slate-800/60 text-white border border-white/20 hover:bg-slate-700/60 hover:border-white/30 active:bg-slate-600/60',
+      'bg-[var(--glass-card-bg)] text-[var(--text)] border border-[var(--glass-border)] hover:bg-[var(--glass-bg)] hover:border-[var(--glass-hover-border)] active:bg-[var(--glass-bg)]',
     ghost: 
-      'bg-transparent text-white border border-transparent hover:bg-white/10 hover:border-white/10 active:bg-white/20',
+      'bg-transparent text-[var(--text)] border border-transparent hover:bg-[var(--glass-card-bg)] hover:border-[var(--glass-border)] active:bg-[var(--glass-bg)]',
   };
 
   // Disabled state classes

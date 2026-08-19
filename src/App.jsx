@@ -4,6 +4,9 @@ import { AnimatePresence } from 'framer-motion';
 // Layout Components
 import Navbar from './components/layout/Navbar';
 
+// Context Providers
+import { CricketNavProvider } from './context/CricketNavContext';
+
 // Page Components
 import Home from './pages/Home';
 import Experience from './pages/Experience';
@@ -12,6 +15,7 @@ import Research from './pages/Research';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import ProjectDetails from './pages/ProjectDetails';
+import Overview from './pages/Overview';
 
 /**
  * AnimatedRoutes Component
@@ -32,6 +36,7 @@ function AnimatedRoutes() {
         <Route path="/research" element={<Research />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/overview" element={<Overview />} />
       </Routes>
     </AnimatePresence>
   );
@@ -48,13 +53,15 @@ function AnimatedRoutes() {
 function App() {
   return (
     <BrowserRouter>
-      {/* Navbar persists across all routes - outside AnimatePresence */}
-      <Navbar />
-      
-      {/* Main content area with animated page transitions */}
-      <main>
-        <AnimatedRoutes />
-      </main>
+      <CricketNavProvider>
+        {/* Navbar persists across all routes - outside AnimatePresence */}
+        <Navbar />
+        
+        {/* Main content area with animated page transitions */}
+        <main>
+          <AnimatedRoutes />
+        </main>
+      </CricketNavProvider>
     </BrowserRouter>
   );
 }

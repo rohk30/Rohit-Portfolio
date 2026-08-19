@@ -138,19 +138,6 @@ export const projectData = [
     caseStudy: true,
   },
   {
-    id: 'flashcard-generator',
-    title: 'Flashcard Generator from PDF',
-    eyebrow: 'Developer Tool · Parsing · Anki',
-    description:
-      'A personal Streamlit tool that turns GRE vocabulary PDFs into synchronized Anki flashcards through robust parsing, throttled imports and extensible content-extraction hooks.',
-    techStack: ['Python', 'Streamlit', 'Anki', 'PDF Parsing'],
-    metrics: ['Personal project', 'GRE vocabulary workflow', 'Anki sync'],
-    githubUrl: 'https://github.com/rohk30/Flashcard-Generator-from-PDF',
-    featured: true,
-    image: '/images/projects/flashcard-generator.png',
-    caseStudy: true,
-  },
-  {
     id: 'splitwise',
     title: 'Group Expense Splitter',
     eyebrow: 'Flutter · Firebase · Algorithms',
@@ -164,6 +151,19 @@ export const projectData = [
     caseStudy: true,
   },
   {
+    id: 'flashcard-generator',
+    title: 'Flashcard Generator from PDF',
+    eyebrow: 'Developer Tool · Parsing · Anki',
+    description:
+      'A personal Streamlit tool that turns GRE vocabulary PDFs into synchronized Anki flashcards through robust parsing, throttled imports and extensible content-extraction hooks.',
+    techStack: ['Python', 'Streamlit', 'Anki', 'PDF Parsing'],
+    metrics: ['Personal project', 'GRE vocabulary workflow', 'Anki sync'],
+    githubUrl: 'https://github.com/rohk30/Flashcard-Generator-from-PDF',
+    featured: true,
+    image: '/images/projects/flashcard-generator.png',
+    caseStudy: true,
+  },
+  {
     id: 'face-emotions',
     title: 'Face Emotion Classification',
     eyebrow: 'Computer Vision · CNN',
@@ -172,7 +172,7 @@ export const projectData = [
     techStack: ['Python', 'Keras', 'CNN', 'OpenCV'],
     metrics: ['7 emotion classes', 'Keras model', 'Face detection'],
     githubUrl: 'https://github.com/rohk30/FaceEmotionsDetection',
-    featured: true,
+    featured: false,
     image: null,
     caseStudy: false,
   },

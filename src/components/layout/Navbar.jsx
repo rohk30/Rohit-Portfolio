@@ -20,9 +20,9 @@ function NavItem({ item }) {
       to={item.path}
       end={item.path === '/'}
       data-active={isActive ? 'true' : 'false'}
-      className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-teal)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+      className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d] ${
         isActive
-          ? 'text-[var(--accent-teal)] bg-[rgba(45,212,191,0.08)]'
+          ? 'text-[var(--accent-gold)] bg-[rgba(201,162,39,0.08)]'
           : 'text-slate-300 hover:text-white hover:bg-white/5'
       }`}
     >
@@ -49,9 +49,9 @@ function MobileNavItem({ item, onClose }) {
       end={item.path === '/'}
       onClick={onClose}
       data-active={isActive ? 'true' : 'false'}
-      className={`flex items-center min-h-[44px] min-w-[44px] px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-teal)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 ${
+      className={`flex items-center min-h-[44px] min-w-[44px] px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d] ${
         isActive
-          ? 'text-blue-400 bg-white/10'
+          ? 'text-[var(--accent-gold)] bg-[rgba(201,162,39,0.08)]'
           : 'text-slate-300 hover:text-white hover:bg-white/5 active:bg-white/10'
       }`}
     >
@@ -197,12 +197,12 @@ function MobileMenuDrawer({ isOpen, onClose }) {
             aria-label="Navigation menu"
           >
             {/* Drawer header with close button */}
-            <div className="flex items-center justify-between p-4 border-b border-white/10">
+            <div className="flex items-center justify-between p-4 border-b border-[rgba(200,180,140,0.15)]">
               <span className="text-lg font-semibold text-white">Menu</span>
               <button
                 type="button"
                 onClick={onClose}
-                className="flex items-center justify-center min-h-[44px] min-w-[44px] rounded-lg text-gray-300 hover:text-white hover:bg-white/10 active:bg-white/20 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-teal)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="flex items-center justify-center min-h-[44px] min-w-[44px] rounded-lg text-gray-300 hover:text-white hover:bg-white/10 active:bg-white/20 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d]"
                 aria-label="Close navigation menu"
               >
                 {/* X close icon */}
@@ -285,7 +285,7 @@ function Navbar() {
             {/* Logo / Brand */}
             <NavLink 
               to="/" 
-              className="text-xl font-semibold text-white hover:text-blue-400 transition-colors duration-200 rounded-lg px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-teal)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="text-xl font-semibold text-white hover:text-[var(--accent-gold)] transition-colors duration-200 rounded-lg px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d]"
               aria-label="Go to homepage"
             >
               ROHIT / RKB
@@ -303,7 +303,7 @@ function Navbar() {
               <button
                 type="button"
                 onClick={handleOpenMenu}
-                className="flex items-center justify-center min-h-[44px] min-w-[44px] rounded-lg text-gray-300 hover:text-white hover:bg-white/10 active:bg-white/20 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-teal)] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                className="flex items-center justify-center min-h-[44px] min-w-[44px] rounded-lg text-gray-300 hover:text-white hover:bg-white/10 active:bg-white/20 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d]"
                 aria-label="Open navigation menu"
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-menu"
