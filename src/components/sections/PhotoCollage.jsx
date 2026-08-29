@@ -67,7 +67,7 @@ function PhotoCollage({ photos = [], className = '' }) {
 
   if (!photos || photos.length === 0) {
     return (
-      <div className={`text-gray-400 text-center py-8 ${className}`}>
+      <div className={`text-[var(--text-soft)] text-center py-8 ${className}`}>
         No photos available
       </div>
     );
@@ -99,21 +99,21 @@ function PhotoCollage({ photos = [], className = '' }) {
               aspect-square
               overflow-hidden
               rounded-xl
-              bg-slate-900/40
+              bg-[var(--glass-card-bg)]
               backdrop-blur-md
               border
-              border-white/10
+              border-[var(--glass-border)]
               shadow-lg
               cursor-pointer
               focus:outline-none
               focus-visible:ring-2
-              focus-visible:ring-blue-400
+              focus-visible:ring-[var(--accent-gold)]
               focus-visible:ring-offset-2
-              focus-visible:ring-offset-slate-950
+              focus-visible:ring-offset-[#0d1f0d]
               transition-shadow
               duration-300
-              hover:shadow-blue-500/10
-              hover:border-white/20
+              hover:shadow-[rgba(201,162,39,0.1)]
+              hover:border-[var(--glass-hover-border)]
             "
             aria-label={`View ${photo.alt || 'photo'} - ${photo.location || 'Unknown location'}. Press Enter to open enlarged view.`}
             type="button"
@@ -125,7 +125,7 @@ function PhotoCollage({ photos = [], className = '' }) {
                 className="
                   w-full
                   h-full
-                  bg-slate-800/50
+                  bg-[var(--glass-card-bg)]
                   flex
                   flex-col
                   items-center
@@ -134,10 +134,10 @@ function PhotoCollage({ photos = [], className = '' }) {
                 "
                 aria-label="Image unavailable"
               >
-                <ImageOff className="w-8 h-8 text-gray-500" aria-hidden="true" />
-                <span className="text-xs text-gray-500">Image unavailable</span>
+                <ImageOff className="w-8 h-8 text-[var(--text-soft)]" aria-hidden="true" />
+                <span className="text-xs text-[var(--text-soft)]">Image unavailable</span>
                 {photo.location && (
-                  <span className="text-xs text-gray-400">{photo.location}</span>
+                  <span className="text-xs text-[var(--text-soft)]">{photo.location}</span>
                 )}
               </div>
             ) : (
@@ -190,7 +190,7 @@ function PhotoCollage({ photos = [], className = '' }) {
                     font-medium
                   "
                 >
-                  <MapPin size={14} className="text-blue-400 flex-shrink-0" />
+                  <MapPin size={14} className="text-[var(--accent-gold)] flex-shrink-0" />
                   <span className="truncate">{photo.location || 'Unknown location'}</span>
                 </div>
               </div>
@@ -215,16 +215,16 @@ function PhotoCollage({ photos = [], className = '' }) {
               >
                 <div
                   className="
-                    bg-slate-900/60
+                    bg-[var(--glass-bg)]
                     backdrop-blur-sm
                     rounded-full
                     px-3
                     py-1.5
                     text-xs
-                    text-white
+                    text-[var(--text)]
                     font-medium
                     border
-                    border-white/20
+                    border-[var(--glass-border)]
                   "
                 >
                   Click to view

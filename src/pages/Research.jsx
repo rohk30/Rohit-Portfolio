@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import PageTransition from '../components/layout/PageTransition';
 import CategoryFilter from '../components/sections/CategoryFilter';
 import PublicationCard from '../components/sections/PublicationCard';
+import PlayNextBallWidget from '../components/cricket/PlayNextBallWidget';
 import { researchData } from '../utils/data';
 import {
   sortPublicationsByDate,
@@ -125,10 +126,10 @@ function Research() {
       <div className="container-portfolio py-8 md:py-12">
         {/* Page Header */}
         <header className="mb-8 md:mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-[var(--text)] mb-4">
             Research
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl">
+          <p className="text-[var(--text-soft)] text-lg max-w-2xl">
             Research publications and academic contributions in AI, machine learning,
             and data science. Click on any publication to read more.
           </p>
@@ -142,7 +143,7 @@ function Research() {
             onCategoryChange={handleCategoryChange}
             className="mb-4"
           />
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-[var(--text-soft)]">
             Showing {totalPublications} publication{totalPublications !== 1 ? 's' : ''}
             {activeCategory && ` in ${categoryDisplayNames[activeCategory]}`}
           </p>
@@ -157,10 +158,10 @@ function Research() {
                 {activeCategory === null && (
                   <h2 
                     id={`category-${category}`}
-                    className="text-2xl font-semibold text-white mb-6 pb-2 border-b border-white/10"
+                    className="text-2xl font-semibold text-[var(--text)] mb-6 pb-2 border-b border-[var(--glass-border)]"
                   >
                     {categoryDisplayNames[category]}
-                    <span className="ml-3 text-sm font-normal text-gray-400">
+                    <span className="ml-3 text-sm font-normal text-[var(--text-soft)]">
                       ({processedPublications[category].length})
                     </span>
                   </h2>
@@ -182,15 +183,18 @@ function Research() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 bg-slate-900/40 rounded-2xl border border-white/10">
-            <p className="text-gray-400">
+          <div className="text-center py-12 bg-[var(--glass-card-bg)] rounded-2xl border border-[var(--glass-border)]">
+            <p className="text-[var(--text-soft)]">
               No publications found
               {activeCategory && ` in ${categoryDisplayNames[activeCategory]}`}.
             </p>
-            <p className="text-gray-500 text-sm mt-2">Check back later for updates.</p>
+            <p className="text-[var(--text-soft)] text-sm mt-2">Check back later for updates.</p>
           </div>
         )}
       </div>
+
+      {/* Cricket-themed navigation widget */}
+      <PlayNextBallWidget currentPath="/research" />
     </PageTransition>
   );
 }

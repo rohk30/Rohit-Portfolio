@@ -32,9 +32,9 @@ function Badge({ text, variant = 'default', size = 'sm', className = '' }) {
   // Variant-specific classes with glassmorphism styling
   const variantClasses = {
     default: 
-      'bg-slate-800/60 text-gray-300 border border-white/10 hover:bg-slate-700/60 hover:text-gray-200',
+      'bg-[var(--glass-card-bg)] text-[var(--text-soft)] border border-[var(--glass-border)] hover:bg-[var(--glass-bg)] hover:text-[var(--text)]',
     accent: 
-      'bg-blue-500/20 text-blue-400 border border-blue-400/30 hover:bg-blue-500/30 hover:text-blue-300',
+      'bg-[var(--accent-gold)]/20 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30 hover:bg-[var(--accent-gold)]/30 hover:text-[var(--text)]',
   };
 
   // Combine all classes

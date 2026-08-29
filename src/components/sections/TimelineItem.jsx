@@ -53,11 +53,11 @@ function TimelineItem({
         className={`
           group w-full text-left pl-8 pr-4 py-3 rounded-lg
           transition-all duration-300 ease-out
-          focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 
-          focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950
+          focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] 
+          focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d]
           ${isActive 
-            ? 'bg-slate-800/50' 
-            : 'hover:bg-slate-800/30'
+            ? 'bg-[var(--glass-card-bg)]' 
+            : 'hover:bg-[var(--glass-card-bg)]'
           }
         `}
         aria-current={isActive ? 'true' : undefined}
@@ -69,8 +69,8 @@ function TimelineItem({
             absolute left-1.5 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full
             border-2 transition-all duration-300
             ${isActive 
-              ? 'bg-blue-400 border-blue-400 shadow-lg shadow-blue-400/50' 
-              : 'bg-slate-950 border-white/30 group-hover:border-blue-400/50'
+              ? 'bg-[var(--accent-gold)] border-[var(--accent-gold)] shadow-lg shadow-[rgba(201,162,39,0.5)]' 
+              : 'bg-[#0d1f0d] border-[var(--glass-border)] group-hover:border-[var(--accent-gold)]/50'
             }
           `}
           aria-hidden="true"
@@ -80,7 +80,7 @@ function TimelineItem({
         <span 
           className={`
             block text-sm font-medium transition-colors duration-300
-            ${isActive ? 'text-blue-400' : 'text-white group-hover:text-blue-400'}
+            ${isActive ? 'text-[var(--accent-gold)]' : 'text-[var(--text)] group-hover:text-[var(--accent-gold)]'}
           `}
         >
           {company}
@@ -90,7 +90,7 @@ function TimelineItem({
         <span 
           className={`
             block text-xs mt-1 transition-colors duration-300
-            ${isActive ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300'}
+            ${isActive ? 'text-[var(--text-soft)]' : 'text-[var(--text-soft)] group-hover:text-[var(--text-soft)]'}
           `}
         >
           {date}

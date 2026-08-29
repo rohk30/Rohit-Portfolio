@@ -12,6 +12,7 @@ import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, within, act } from '@testing-library/react';
 import * as fc from 'fast-check';
 import { MemoryRouter } from 'react-router-dom';
+import { CricketNavProvider } from '@/context/CricketNavContext';
 import Experience from '@pages/Experience';
 import Timeline from '@components/sections/Timeline';
 import TimelineItem from '@components/sections/TimelineItem';
@@ -92,9 +93,9 @@ describe('Timeline Click Scrolls to Correct Card - Property 3', () => {
         fc.constantFrom(...experienceData),
         (experience) => {
           const { container, unmount } = render(
-            <MemoryRouter initialEntries={['/experience']}>
+            <MemoryRouter initialEntries={['/experience']}><CricketNavProvider>
               <Experience />
-            </MemoryRouter>
+            </CricketNavProvider></MemoryRouter>
           );
 
           // Reset the mock before each click
@@ -144,9 +145,9 @@ describe('Timeline Click Scrolls to Correct Card - Property 3', () => {
         fc.constantFrom(...experienceData),
         (experience) => {
           const { container, unmount } = render(
-            <MemoryRouter initialEntries={['/experience']}>
+            <MemoryRouter initialEntries={['/experience']}><CricketNavProvider>
               <Experience />
-            </MemoryRouter>
+            </CricketNavProvider></MemoryRouter>
           );
 
           // Find the timeline button for this experience
@@ -185,9 +186,9 @@ describe('Timeline Click Scrolls to Correct Card - Property 3', () => {
         fc.constantFrom(...experienceData),
         (experience) => {
           const { container, unmount } = render(
-            <MemoryRouter initialEntries={['/experience']}>
+            <MemoryRouter initialEntries={['/experience']}><CricketNavProvider>
               <Experience />
-            </MemoryRouter>
+            </CricketNavProvider></MemoryRouter>
           );
 
           // Find the timeline button for this experience
@@ -214,8 +215,8 @@ describe('Timeline Click Scrolls to Correct Card - Property 3', () => {
           expect(targetCard).not.toBeNull();
           
           // Verify the card has highlight styling (blue border class)
-          // The ExperienceCard applies 'border-blue-400/50' when isActive
-          expect(targetCard.className).toContain('border-blue-400');
+          // The ExperienceCard applies 'accent-gold/50' when isActive
+          expect(targetCard.className).toContain('accent-gold');
 
           unmount();
           return true;
@@ -239,9 +240,9 @@ describe('Timeline Click Scrolls to Correct Card - Property 3', () => {
         fc.constantFrom(...experienceData),
         (experience) => {
           const { container, unmount } = render(
-            <MemoryRouter initialEntries={['/experience']}>
+            <MemoryRouter initialEntries={['/experience']}><CricketNavProvider>
               <Experience />
-            </MemoryRouter>
+            </CricketNavProvider></MemoryRouter>
           );
 
           // Find the timeline button for this experience
@@ -260,7 +261,7 @@ describe('Timeline Click Scrolls to Correct Card - Property 3', () => {
           let highlightedCount = 0;
           
           cards.forEach(card => {
-            if (card.className.includes('border-blue-400')) {
+            if (card.className.includes('accent-gold')) {
               highlightedCount++;
               // Verify the highlighted card is the correct one
               expect(card.textContent).toContain(experience.role);
@@ -292,9 +293,9 @@ describe('Timeline Click Scrolls to Correct Card - Property 3', () => {
         fc.constantFrom(...experienceData),
         (experience) => {
           const { container, unmount } = render(
-            <MemoryRouter initialEntries={['/experience']}>
+            <MemoryRouter initialEntries={['/experience']}><CricketNavProvider>
               <Experience />
-            </MemoryRouter>
+            </CricketNavProvider></MemoryRouter>
           );
 
           // Verify timeline item exists for this experience
@@ -349,9 +350,9 @@ describe('Timeline Click Scrolls to Correct Card - Property 3', () => {
         ).filter(([a, b]) => a.id !== b.id),
         ([firstExp, secondExp]) => {
           const { container, unmount } = render(
-            <MemoryRouter initialEntries={['/experience']}>
+            <MemoryRouter initialEntries={['/experience']}><CricketNavProvider>
               <Experience />
-            </MemoryRouter>
+            </CricketNavProvider></MemoryRouter>
           );
 
           const timelineNav = container.querySelector('nav[aria-label="Experience timeline"]');
@@ -386,7 +387,7 @@ describe('Timeline Click Scrolls to Correct Card - Property 3', () => {
           let highlightedCards = [];
           
           cards.forEach(card => {
-            if (card.className.includes('border-blue-400')) {
+            if (card.className.includes('accent-gold')) {
               highlightedCards.push(card);
             }
           });

@@ -352,7 +352,11 @@ describe('Keyboard Accessibility - Property 12', () => {
           }),
           fc.constantFrom('Enter', ' '),
           (project, activationKey) => {
-            const { container } = render(<ProjectCard project={project} />);
+            const { container } = render(
+              <MemoryRouter>
+                <ProjectCard project={project} />
+              </MemoryRouter>
+            );
 
             // Find the GlassCard which wraps the interactive content
             const article = container.querySelector('article');

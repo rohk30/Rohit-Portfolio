@@ -2,6 +2,7 @@ import { useState, useRef, useCallback } from 'react';
 import PageTransition from '../components/layout/PageTransition';
 import Timeline from '../components/sections/Timeline';
 import ExperienceCard from '../components/sections/ExperienceCard';
+import PlayNextBallWidget from '../components/cricket/PlayNextBallWidget';
 import { experienceData } from '../utils/data';
 
 /**
@@ -72,10 +73,10 @@ function Experience() {
       <div className="container-portfolio py-8 md:py-12">
         {/* Page Header */}
         <header className="mb-8 md:mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-[var(--text)] mb-4">
             Experience
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl">
+          <p className="text-[var(--text-soft)] text-lg max-w-2xl">
             A timeline of my professional journey, from internships to current role.
           </p>
         </header>
@@ -96,9 +97,9 @@ function Experience() {
           {/* Experience Cards - Scrollable list */}
           <main className="flex-1 space-y-6">
             {safeExperienceData.length === 0 ? (
-              <div className="text-center py-12 bg-slate-900/40 rounded-2xl border border-white/10">
-                <p className="text-gray-400">No experience data available.</p>
-                <p className="text-gray-500 text-sm mt-2">Check back later for updates.</p>
+              <div className="text-center py-12 bg-[var(--glass-card-bg)] rounded-2xl border border-[var(--glass-border)]">
+                <p className="text-[var(--text-soft)]">No experience data available.</p>
+                <p className="text-[var(--text-soft)] text-sm mt-2">Check back later for updates.</p>
               </div>
             ) : (
               safeExperienceData.map(experience => (
@@ -113,6 +114,9 @@ function Experience() {
           </main>
         </div>
       </div>
+
+      {/* Cricket-themed navigation widget */}
+      <PlayNextBallWidget currentPath="/experience" />
     </PageTransition>
   );
 }

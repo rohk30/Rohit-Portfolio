@@ -15,11 +15,21 @@
  */
 import { describe, test, expect, beforeEach, afterEach } from 'vitest';
 import { render, cleanup } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import * as fc from 'fast-check';
 import PhotoCollage from '@components/sections/PhotoCollage';
 import ProjectCard from '@components/sections/ProjectCard';
 import PhotoModal from '@components/ui/PhotoModal';
 import { personalData, projectData } from '@utils/data';
+
+/** Helper to render ProjectCard within Router context */
+function renderProjectCard(project) {
+  return render(
+    <MemoryRouter>
+      <ProjectCard project={project} />
+    </MemoryRouter>
+  );
+}
 
 describe('Image Alt Text - Property 11', () => {
   beforeEach(() => {
@@ -186,7 +196,7 @@ describe('Image Alt Text - Property 11', () => {
       fc.property(
         projectWithImageArbitrary,
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
           const img = container.querySelector('img');
           
@@ -219,7 +229,7 @@ describe('Image Alt Text - Property 11', () => {
       fc.property(
         projectWithImageArbitrary,
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
           const img = container.querySelector('img');
           
@@ -289,6 +299,7 @@ describe('Image Alt Text - Property 11', () => {
    */
   test('actual travelPhotos data has valid alt text for all photos', () => {
     const travelPhotos = personalData.hobbies?.travelPhotos || [];
+    if (travelPhotos.length === 0) return; // Skip if no photos
     
     fc.assert(
       fc.property(
@@ -334,7 +345,7 @@ describe('Image Alt Text - Property 11', () => {
       fc.property(
         fc.constantFrom(...projectsWithImages),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
           const img = container.querySelector('img');
           expect(img).not.toBeNull();

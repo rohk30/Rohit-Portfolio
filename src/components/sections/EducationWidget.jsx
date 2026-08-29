@@ -21,32 +21,32 @@ function EducationWidget() {
     >
       {/* Header with Icon */}
       <div className="flex items-center gap-3 mb-4">
-        <div className="p-2 rounded-lg bg-blue-500/10 border border-blue-500/20">
-          <GraduationCap className="w-5 h-5 text-blue-400" />
+        <div className="p-2 rounded-lg bg-[var(--accent-gold)]/10 border border-[var(--accent-gold)]/20">
+          <GraduationCap className="w-5 h-5 text-[var(--accent-gold)]" />
         </div>
-        <h3 className="text-lg font-semibold text-white">Education</h3>
+        <h3 className="text-lg font-semibold text-[var(--text)]">Education</h3>
       </div>
       
       {/* Education Content */}
       <div className="space-y-2 flex-1">
-        <p className="text-white font-medium text-base">
+        <p className="text-[var(--text)] font-medium text-base">
           {education?.degree || 'B.Tech'}
         </p>
-        <p className="text-gray-400 text-sm leading-relaxed">
+        <p className="text-[var(--text-soft)] text-sm leading-relaxed">
           {education?.specialization || 'Computer Science with Data Science'}
         </p>
-        <p className="text-gray-400 text-sm">
+        <p className="text-[var(--text-soft)] text-sm">
           {education?.institution || 'Vellore Institute of Technology'}
         </p>
       </div>
       
       {/* GPA Highlight */}
-      <div className="mt-4 pt-4 border-t border-white/10">
+      <div className="mt-4 pt-4 border-t border-[var(--glass-border)]">
         <div className="flex items-baseline gap-2">
-          <span className="text-2xl font-bold text-blue-400">
+          <span className="text-2xl font-bold text-[var(--accent-gold)]">
             {education?.gpa || '9.5'}
           </span>
-          <span className="text-gray-400 text-sm">GPA</span>
+          <span className="text-[var(--text-soft)] text-sm">GPA</span>
         </div>
       </div>
     </GlassCard>

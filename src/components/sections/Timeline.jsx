@@ -27,7 +27,7 @@ import TimelineItem from './TimelineItem';
 function Timeline({ items = [], activeId = null, onItemClick }) {
   if (!items || items.length === 0) {
     return (
-      <div className="text-gray-400 text-center py-8">
+      <div className="text-[var(--text-soft)] text-center py-8">
         No timeline items to display
       </div>
     );
@@ -40,7 +40,7 @@ function Timeline({ items = [], activeId = null, onItemClick }) {
     >
       {/* Vertical line connector */}
       <div 
-        className="absolute left-3 top-0 bottom-0 w-0.5 bg-white/10"
+        className="absolute left-3 top-0 bottom-0 w-0.5 bg-[var(--glass-border)]"
         aria-hidden="true"
       />
 

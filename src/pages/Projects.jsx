@@ -1,5 +1,6 @@
 import PageTransition from '../components/layout/PageTransition';
 import ProjectCard from '../components/sections/ProjectCard';
+import PlayNextBallWidget from '../components/cricket/PlayNextBallWidget';
 import { projectData } from '../utils/data';
 
 /**
@@ -34,10 +35,10 @@ function Projects() {
       <div className="container-portfolio py-8 md:py-12">
         {/* Page Header */}
         <header className="mb-8 md:mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-[var(--text)] mb-4">
             Projects
           </h1>
-          <p className="text-gray-400 text-lg max-w-2xl">
+          <p className="text-[var(--text-soft)] text-lg max-w-2xl">
             Technical projects showcasing full-stack development, machine learning, 
             and agentic AI systems. Click on any project to view the source code on GitHub.
           </p>
@@ -46,7 +47,7 @@ function Projects() {
         {/* Featured Projects Section Indicator */}
         {featuredCount > 0 && (
           <div className="mb-6">
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-[var(--text-soft)]">
               Showing {sortedProjects.length} selected projects • {featuredCount} featured
             </p>
           </div>
@@ -66,12 +67,15 @@ function Projects() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12 bg-slate-900/40 rounded-2xl border border-white/10">
-            <p className="text-gray-400">No projects found.</p>
-            <p className="text-gray-500 text-sm mt-2">Check back later for updates.</p>
+          <div className="text-center py-12 bg-[var(--glass-card-bg)] rounded-2xl border border-[var(--glass-border)]">
+            <p className="text-[var(--text-soft)]">No projects found.</p>
+            <p className="text-[var(--text-soft)] text-sm mt-2">Check back later for updates.</p>
           </div>
         )}
       </div>
+
+      {/* Cricket-themed navigation widget */}
+      <PlayNextBallWidget currentPath="/projects" />
     </PageTransition>
   );
 }

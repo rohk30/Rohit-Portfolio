@@ -1,5 +1,6 @@
 import { Award, Calendar, Download, GraduationCap, MapPin, Plane, Trophy, Users } from 'lucide-react';
 import PageTransition from '../components/layout/PageTransition';
+import PlayNextBallWidget from '../components/cricket/PlayNextBallWidget';
 import { contactData, personalData } from '../utils/data';
 
 function About() {
@@ -54,6 +55,9 @@ function About() {
           </section>
         </div>
       </div>
+
+      {/* Cricket-themed navigation widget */}
+      <PlayNextBallWidget currentPath="/about" />
     </PageTransition>
   );
 }

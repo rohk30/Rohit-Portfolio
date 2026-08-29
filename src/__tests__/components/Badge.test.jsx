@@ -20,23 +20,23 @@ describe('Badge', () => {
     it('applies default variant styling by default', () => {
       render(<Badge text="Default" />);
       const badge = screen.getByText('Default');
-      expect(badge).toHaveClass('bg-slate-800/60');
-      expect(badge).toHaveClass('text-gray-300');
-      expect(badge).toHaveClass('border-white/10');
+      expect(badge).toHaveClass('bg-[var(--glass-card-bg)]');
+      expect(badge).toHaveClass('text-[var(--text-soft)]');
+      expect(badge).toHaveClass('border-[var(--glass-border)]');
     });
 
     it('applies accent variant styling when specified', () => {
       render(<Badge text="Accent" variant="accent" />);
       const badge = screen.getByText('Accent');
-      expect(badge).toHaveClass('bg-blue-500/20');
-      expect(badge).toHaveClass('text-blue-400');
-      expect(badge).toHaveClass('border-blue-400/30');
+      expect(badge).toHaveClass('bg-[var(--accent-gold)]/20');
+      expect(badge).toHaveClass('text-[var(--accent-gold)]');
+      expect(badge).toHaveClass('border-[var(--accent-gold)]/30');
     });
 
     it('falls back to default variant for invalid variant', () => {
       render(<Badge text="Fallback" variant="invalid" />);
       const badge = screen.getByText('Fallback');
-      expect(badge).toHaveClass('bg-slate-800/60');
+      expect(badge).toHaveClass('bg-[var(--glass-card-bg)]');
     });
   });
 

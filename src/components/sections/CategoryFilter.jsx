@@ -29,16 +29,16 @@ function CategoryFilter({
   const baseButtonClasses = 
     'inline-flex items-center justify-center font-medium rounded-full ' +
     'px-4 py-2 text-sm transition-all duration-300 ' +
-    'border backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950';
+    'border backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d]';
 
   // Active button classes
   const activeClasses = 
-    'bg-blue-500/30 text-blue-300 border-blue-400/50 shadow-lg shadow-blue-500/20';
+    'bg-[var(--accent-gold)]/30 text-[var(--accent-gold)] border-[var(--accent-gold)]/50 shadow-lg shadow-[rgba(201,162,39,0.2)]';
 
   // Inactive button classes
   const inactiveClasses = 
-    'bg-slate-800/40 text-gray-400 border-white/10 ' +
-    'hover:bg-slate-700/50 hover:text-gray-200 hover:border-white/20';
+    'bg-[var(--glass-card-bg)] text-[var(--text-soft)] border-[var(--glass-border)] ' +
+    'hover:bg-[var(--glass-bg)] hover:text-[var(--text)] hover:border-[var(--glass-hover-border)]';
 
   /**
    * Handles click on a category button

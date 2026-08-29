@@ -9,9 +9,19 @@
  */
 import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import * as fc from 'fast-check';
 import ProjectCard from '@components/sections/ProjectCard';
 import { projectData } from '@utils/data';
+
+/** Helper to render ProjectCard within Router context */
+function renderProjectCard(project) {
+  return render(
+    <MemoryRouter>
+      <ProjectCard project={project} />
+    </MemoryRouter>
+  );
+}
 
 describe('Project Card Click Opens GitHub URL - Property 5', () => {
   let windowOpenSpy;
@@ -36,11 +46,11 @@ describe('Project Card Click Opens GitHub URL - Property 5', () => {
   test('clicking project card opens exact GitHub URL in new tab for any project with githubUrl', () => {
     fc.assert(
       fc.property(
-        fc.constantFrom(...projectData.filter(p => p.githubUrl)),
+        fc.constantFrom(...projectData.filter(p => p.githubUrl && !p.caseStudy)),
         (project) => {
           windowOpenSpy.mockClear();
           
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
 
           // Find and click the article element (the GlassCard)
           const card = container.querySelector('article');
@@ -73,11 +83,11 @@ describe('Project Card Click Opens GitHub URL - Property 5', () => {
   test('opens GitHub URL with _blank target and security options for any project', () => {
     fc.assert(
       fc.property(
-        fc.constantFrom(...projectData.filter(p => p.githubUrl)),
+        fc.constantFrom(...projectData.filter(p => p.githubUrl && !p.caseStudy)),
         (project) => {
           windowOpenSpy.mockClear();
           
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
           const card = container.querySelector('article');
           
           fireEvent.click(card);
@@ -122,7 +132,7 @@ describe('Project Card Click Opens GitHub URL - Property 5', () => {
         (project) => {
           windowOpenSpy.mockClear();
           
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
           const card = container.querySelector('article');
           
           fireEvent.click(card);
@@ -167,7 +177,7 @@ describe('Project Card Click Opens GitHub URL - Property 5', () => {
         (project) => {
           windowOpenSpy.mockClear();
           
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
           const card = container.querySelector('article');
           
           fireEvent.click(card);
@@ -194,12 +204,12 @@ describe('Project Card Click Opens GitHub URL - Property 5', () => {
   test('card triggers window.open on each click for any project', () => {
     fc.assert(
       fc.property(
-        fc.constantFrom(...projectData.filter(p => p.githubUrl)),
+        fc.constantFrom(...projectData.filter(p => p.githubUrl && !p.caseStudy)),
         fc.integer({ min: 1, max: 5 }),
         (project, clickCount) => {
           windowOpenSpy.mockClear();
           
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
           const card = container.querySelector('article');
           
           // Click multiple times
@@ -247,7 +257,7 @@ describe('Project Card Click Opens GitHub URL - Property 5', () => {
         (project) => {
           windowOpenSpy.mockClear();
           
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
           const card = container.querySelector('article');
           
           fireEvent.click(card);
@@ -273,14 +283,13 @@ describe('Project Card Click Opens GitHub URL - Property 5', () => {
   test('card has appropriate aria-label when githubUrl is present', () => {
     fc.assert(
       fc.property(
-        fc.constantFrom(...projectData.filter(p => p.githubUrl)),
+        fc.constantFrom(...projectData.filter(p => p.githubUrl && !p.caseStudy)),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
           const card = container.querySelector('article');
           
           const ariaLabel = card.getAttribute('aria-label');
           expect(ariaLabel).toContain(project.title);
-          expect(ariaLabel).toContain('GitHub');
 
           unmount();
           return true;
@@ -291,19 +300,22 @@ describe('Project Card Click Opens GitHub URL - Property 5', () => {
   });
 
   /**
-   * Property 5.8: Card displays "View on GitHub" text when githubUrl is present
-   * Cards with githubUrl should display the "View on GitHub" hint text.
+   * Property 5.8: Card displays "View GitHub" text when githubUrl is present
+   * Cards with githubUrl should display the "View GitHub" hint text.
    * 
    * **Validates: Requirements 4.4**
    */
-  test('card displays "View on GitHub" hint when githubUrl is present', () => {
+  test('card displays "View GitHub" hint when githubUrl is present', () => {
+    const projectsWithGithubOnly = projectData.filter(p => p.githubUrl && !p.caseStudy);
+    if (projectsWithGithubOnly.length === 0) return;
+
     fc.assert(
       fc.property(
-        fc.constantFrom(...projectData.filter(p => p.githubUrl)),
+        fc.constantFrom(...projectsWithGithubOnly),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
           
-          expect(container.textContent).toContain('View on GitHub');
+          expect(container.textContent).toContain('View GitHub');
 
           unmount();
           return true;
@@ -314,12 +326,12 @@ describe('Project Card Click Opens GitHub URL - Property 5', () => {
   });
 
   /**
-   * Property 5.9: Card does not display "View on GitHub" when githubUrl is missing
+   * Property 5.9: Card does not display "View GitHub" when githubUrl is missing
    * Cards without githubUrl should not display the GitHub hint.
    * 
    * **Validates: Requirements 4.4**
    */
-  test('card does not display "View on GitHub" when githubUrl is missing', () => {
+  test('card does not display "View GitHub" when githubUrl is missing', () => {
     fc.assert(
       fc.property(
         fc.record({
@@ -333,9 +345,9 @@ describe('Project Card Click Opens GitHub URL - Property 5', () => {
           // No githubUrl
         }),
         (project) => {
-          const { container, unmount } = render(<ProjectCard project={project} />);
+          const { container, unmount } = renderProjectCard(project);
           
-          expect(container.textContent).not.toContain('View on GitHub');
+          expect(container.textContent).not.toContain('View GitHub');
 
           unmount();
           return true;

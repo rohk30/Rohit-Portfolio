@@ -1,32 +1,30 @@
 /**
  * Property-based tests for GlassCard component
  * 
- * **Validates: Requirements 8.2, 8.5**
- * - Requirement 8.2: THE GlassCard SHALL apply glassmorphism styling
- * - Requirement 8.5: THE Portfolio_Website SHALL maintain visual consistency using the GlassCard component
+ * **Validates: Requirements 6.1, 6.2, 6.3**
+ * - Requirement 6.1: Warm glassmorphism with cream/gold-tinted borders rgba(200, 180, 140, 0.15)
+ * - Requirement 6.2: Backdrop-filter blur of 18px with warm-toned semi-transparent fill rgba(30, 25, 18, 0.40)
+ * - Requirement 6.3: Hover transitions border color to Gold at 0.45 opacity over 300ms
  * 
- * Property 13 (partial): Data Schema Validation
- * Verify GlassCard renders children correctly for any valid input
+ * Property: GlassCard uses warm glassmorphism CSS custom properties
  */
 import { describe, test, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import * as fc from 'fast-check';
 import GlassCard from '@components/ui/GlassCard';
 
 describe('GlassCard Property Tests', () => {
   /**
    * Property 1: GlassCard renders children correctly for any valid string input
-   * **Validates: Requirements 8.2, 8.5**
+   * **Validates: Requirements 6.1, 6.2**
    */
   test('renders children correctly for any valid string input', () => {
     fc.assert(
       fc.property(
-        // Generate strings without leading/trailing whitespace to avoid text normalization issues
         fc.string({ minLength: 1, maxLength: 500 }).map(s => s.trim()).filter(s => s.length > 0),
         (childText) => {
           const { container, unmount } = render(<GlassCard>{childText}</GlassCard>);
           
-          // Check the text content is rendered
           expect(container.textContent).toContain(childText);
           
           unmount();
@@ -38,10 +36,10 @@ describe('GlassCard Property Tests', () => {
   });
 
   /**
-   * Property 2: GlassCard applies correct base classes for any configuration
-   * **Validates: Requirements 8.2, 8.5**
+   * Property 2: GlassCard applies warm glassmorphism styles via CSS custom properties
+   * **Validates: Requirements 6.1, 6.2**
    */
-  test('applies glassmorphism base classes for all configurations', () => {
+  test('applies warm glassmorphism CSS custom properties for all configurations', () => {
     fc.assert(
       fc.property(
         fc.record({
@@ -50,28 +48,24 @@ describe('GlassCard Property Tests', () => {
           as: fc.constantFrom('div', 'article', 'section'),
         }),
         (config) => {
-          const testId = 'glass-card-test';
           const { container } = render(
             <GlassCard
               hover={config.hover}
               className={config.className}
               as={config.as}
-              data-testid={testId}
             >
               Test Content
             </GlassCard>
           );
 
           const element = container.firstChild;
+          const style = element.style;
           
-          // Verify base glassmorphism classes are always applied
-          expect(element.className).toContain('bg-slate-900/40');
-          expect(element.className).toContain('backdrop-blur-md');
-          expect(element.className).toContain('border');
-          expect(element.className).toContain('border-white/10');
-          expect(element.className).toContain('shadow-2xl');
-          expect(element.className).toContain('rounded-2xl');
-          expect(element.className).toContain('overflow-hidden');
+          // Verify warm glassmorphism CSS custom properties are applied via inline styles
+          expect(style.background).toBe('var(--glass-card-bg)');
+          expect(style.border).toBe('1px solid var(--glass-border)');
+          expect(style.borderRadius).toBe('1rem');
+          expect(style.overflow).toBe('hidden');
           
           return true;
         }
@@ -81,10 +75,10 @@ describe('GlassCard Property Tests', () => {
   });
 
   /**
-   * Property 3: GlassCard correctly handles hover prop
-   * **Validates: Requirements 8.2, 8.5**
+   * Property 3: GlassCard hover state transitions border to Gold at 0.45 opacity
+   * **Validates: Requirement 6.3**
    */
-  test('applies hover classes if and only if hover prop is true', () => {
+  test('hover transitions border color to Gold at 0.45 opacity when hover prop is true', () => {
     fc.assert(
       fc.property(
         fc.boolean(),
@@ -94,20 +88,21 @@ describe('GlassCard Property Tests', () => {
           );
 
           const element = container.firstChild;
-          const className = element.className;
 
           if (hoverEnabled) {
-            // When hover is true, hover classes should be present
-            expect(className).toContain('hover:bg-slate-800/50');
-            expect(className).toContain('hover:border-white/20');
-            expect(className).toContain('hover:shadow-blue-500/10');
-            expect(className).toContain('transition-all');
-            expect(className).toContain('duration-300');
+            // Verify transition property includes border-color with 300ms duration
+            expect(element.style.transition).toContain('border-color 300ms');
+            
+            // Simulate hover - verify border changes to gold
+            fireEvent.mouseEnter(element);
+            expect(element.style.borderColor).toBe('var(--glass-hover-border)');
+            
+            // Simulate mouse leave - verify border returns to default
+            fireEvent.mouseLeave(element);
+            expect(element.style.borderColor).toBe('var(--glass-border)');
           } else {
-            // When hover is false, hover classes should NOT be present
-            expect(className).not.toContain('hover:bg-slate-800/50');
-            expect(className).not.toContain('hover:border-white/20');
-            expect(className).not.toContain('hover:shadow-blue-500/10');
+            // When hover is false, no transition should be applied
+            expect(element.style.transition).toBe('');
           }
           
           return true;
@@ -119,7 +114,7 @@ describe('GlassCard Property Tests', () => {
 
   /**
    * Property 4: GlassCard correctly renders as different element types
-   * **Validates: Requirements 8.2, 8.5**
+   * **Validates: Requirements 6.1, 6.2**
    */
   test('renders as the correct element type based on "as" prop', () => {
     fc.assert(
@@ -141,10 +136,10 @@ describe('GlassCard Property Tests', () => {
   });
 
   /**
-   * Property 5: GlassCard applies custom className alongside base classes
-   * **Validates: Requirements 8.2, 8.5**
+   * Property 5: GlassCard applies custom className alongside warm glassmorphism styles
+   * **Validates: Requirements 6.1, 6.2**
    */
-  test('preserves custom className alongside glassmorphism classes', () => {
+  test('preserves custom className alongside warm glassmorphism styles', () => {
     fc.assert(
       fc.property(
         fc.string({ minLength: 1, maxLength: 50 }).filter(s => /^[a-zA-Z][a-zA-Z0-9-_]*$/.test(s)),
@@ -158,9 +153,12 @@ describe('GlassCard Property Tests', () => {
           // Custom class should be present
           expect(element.className).toContain(customClass);
           
-          // Base classes should still be present
-          expect(element.className).toContain('bg-slate-900/40');
-          expect(element.className).toContain('backdrop-blur-md');
+          // Base glass-card class should still be present
+          expect(element.className).toContain('glass-card');
+          
+          // Warm glassmorphism styles should still be applied
+          expect(element.style.background).toBe('var(--glass-card-bg)');
+          expect(element.style.border).toBe('1px solid var(--glass-border)');
           
           return true;
         }
@@ -171,7 +169,7 @@ describe('GlassCard Property Tests', () => {
 
   /**
    * Property 6: GlassCard with onClick becomes interactive
-   * **Validates: Requirements 8.5**
+   * **Validates: Requirements 6.1**
    */
   test('adds interactive attributes when onClick is provided', () => {
     fc.assert(
@@ -187,12 +185,10 @@ describe('GlassCard Property Tests', () => {
           const element = container.firstChild;
 
           if (hasOnClick) {
-            // When onClick is provided, interactive attributes should be present
             expect(element.className).toContain('cursor-pointer');
             expect(element.getAttribute('role')).toBe('button');
             expect(element.getAttribute('tabindex')).toBe('0');
           } else {
-            // When onClick is not provided, interactive attributes should NOT be present
             expect(element.className).not.toContain('cursor-pointer');
             expect(element.getAttribute('role')).toBeNull();
             expect(element.getAttribute('tabindex')).toBeNull();
@@ -207,7 +203,7 @@ describe('GlassCard Property Tests', () => {
 
   /**
    * Property 7: GlassCard onClick is triggered on click and keyboard events
-   * **Validates: Requirements 8.5**
+   * **Validates: Requirements 6.1**
    */
   test('onClick handler is invoked on click and keyboard activation', () => {
     fc.assert(
@@ -241,7 +237,7 @@ describe('GlassCard Property Tests', () => {
 
   /**
    * Property 8: GlassCard renders complex children correctly
-   * **Validates: Requirements 8.2, 8.5**
+   * **Validates: Requirements 6.1, 6.2**
    */
   test('renders nested content structures correctly', () => {
     fc.assert(
@@ -264,6 +260,31 @@ describe('GlassCard Property Tests', () => {
           items.forEach((item, index) => {
             expect(listItems[index].textContent).toBe(item);
           });
+          
+          return true;
+        }
+      ),
+      { numRuns: 100 }
+    );
+  });
+
+  /**
+   * Property 9: GlassCard backdrop-filter uses 18px blur via CSS custom property
+   * **Validates: Requirement 6.2**
+   */
+  test('applies backdrop-filter blur via CSS custom property --glass-card-blur', () => {
+    fc.assert(
+      fc.property(
+        fc.constantFrom('div', 'article', 'section'),
+        (elementType) => {
+          const { container } = render(
+            <GlassCard as={elementType}>Content</GlassCard>
+          );
+
+          const element = container.firstChild;
+          
+          // Verify backdrop-filter references the CSS custom property
+          expect(element.style.backdropFilter).toBe('blur(var(--glass-card-blur))');
           
           return true;
         }

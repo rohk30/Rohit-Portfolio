@@ -89,15 +89,15 @@ function PublicationCard({ publication }) {
     const configs = {
       published: {
         text: 'Published',
-        className: 'bg-green-500/20 text-green-400 border-green-400/30',
+        className: 'bg-[var(--accent-gold)]/20 text-[var(--accent-gold)] border-[var(--accent-gold)]/30',
       },
       'under-review': {
         text: 'Under Review',
-        className: 'bg-yellow-500/20 text-yellow-400 border-yellow-400/30',
+        className: 'bg-[var(--accent-orange)]/20 text-[var(--accent-orange)] border-[var(--accent-orange)]/30',
       },
       preprint: {
         text: 'Preprint',
-        className: 'bg-purple-500/20 text-purple-400 border-purple-400/30',
+        className: 'bg-[var(--text-soft)]/20 text-[var(--text-soft)] border-[var(--text-soft)]/30',
       },
     };
     return configs[pubStatus] || configs.preprint;
@@ -157,7 +157,7 @@ function PublicationCard({ publication }) {
     >
       {/* Header: Category icon, category name, and status badge */}
       <div className="flex items-center justify-between gap-3 mb-3">
-        <div className="flex items-center gap-2 text-gray-400 text-xs">
+        <div className="flex items-center gap-2 text-[var(--text-soft)] text-xs">
           {getCategoryIcon(category)}
           <span>{formatCategory(category)}</span>
         </div>
@@ -172,13 +172,13 @@ function PublicationCard({ publication }) {
 
       {/* Title with external link indicator */}
       <div className="flex items-start justify-between gap-3 mb-3">
-        <h2 className="text-lg font-semibold text-white leading-tight">
+        <h2 className="text-lg font-semibold text-[var(--text)] leading-tight">
           {publicationUrl ? (
             <a 
               href={publicationUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:text-blue-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 rounded"
+              className="hover:text-[var(--accent-gold)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d] rounded"
             >
               {title}
             </a>
@@ -188,7 +188,7 @@ function PublicationCard({ publication }) {
         </h2>
         {publicationUrl && (
           <ExternalLink 
-            className="w-4 h-4 text-gray-400 flex-shrink-0 mt-1" 
+            className="w-4 h-4 text-[var(--text-soft)] flex-shrink-0 mt-1" 
             aria-hidden="true" 
           />
         )}
@@ -196,14 +196,14 @@ function PublicationCard({ publication }) {
 
       {/* Authors */}
       {formattedAuthors && (
-        <div className="flex items-start gap-2 mb-2 text-sm text-gray-300">
-          <Users className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+        <div className="flex items-start gap-2 mb-2 text-sm text-[var(--text-soft)]">
+          <Users className="w-4 h-4 text-[var(--text-soft)] flex-shrink-0 mt-0.5" aria-hidden="true" />
           <span>{formattedAuthors}</span>
         </div>
       )}
 
       {/* Venue and Date */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-3 text-sm text-gray-400">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-3 text-sm text-[var(--text-soft)]">
         {venue && (
           <span className="italic">{venue}</span>
         )}
@@ -219,8 +219,8 @@ function PublicationCard({ publication }) {
       {abstract && (
         <div className="mb-4 flex-grow">
           <div className="flex items-start gap-2">
-            <Quote className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-            <p className="text-gray-400 text-sm leading-relaxed line-clamp-4">
+            <Quote className="w-4 h-4 text-[var(--text-soft)] flex-shrink-0 mt-0.5" aria-hidden="true" />
+            <p className="text-[var(--text-soft)] text-sm leading-relaxed line-clamp-4">
               {abstract}
             </p>
           </div>
@@ -229,7 +229,7 @@ function PublicationCard({ publication }) {
 
       {/* Citation count and code/dataset link */}
       <div className="mt-auto">
-        <div className="flex items-center justify-between gap-4 pt-4 border-t border-white/10">
+        <div className="flex items-center justify-between gap-4 pt-4 border-t border-[var(--glass-border)]">
           {/* Citation count */}
           <div className="flex items-center gap-4">
             <Badge 
@@ -245,7 +245,7 @@ function PublicationCard({ publication }) {
               href={codeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-400 bg-blue-500/10 border border-blue-400/30 rounded-full hover:bg-blue-500/20 hover:text-blue-300 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[var(--accent-gold)] bg-[var(--accent-gold)]/10 border border-[var(--accent-gold)]/30 rounded-full hover:bg-[var(--accent-gold)]/20 hover:text-[var(--text)] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d]"
               aria-label={`View code repository for ${title}`}
             >
               <Code className="w-3.5 h-3.5" aria-hidden="true" />
@@ -258,12 +258,12 @@ function PublicationCard({ publication }) {
 
       {/* Visual click hint for clickable cards */}
       {publicationUrl && (
-        <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between text-gray-400 text-xs">
+        <div className="mt-4 pt-4 border-t border-[var(--glass-border)] flex items-center justify-between text-[var(--text-soft)] text-xs">
           <a 
             href={publicationUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-between w-full hover:text-blue-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 rounded"
+            className="flex items-center justify-between w-full hover:text-[var(--accent-gold)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1f0d] rounded"
           >
             <span>View Publication</span>
             <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
