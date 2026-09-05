@@ -6,7 +6,7 @@ import { personalData } from '../../utils/data';
  * EducationWidget Component
  * 
  * A bento grid widget (1x1 span) displaying education details including
- * B.Tech in CS with Data Science and 9.5 GPA.
+ * B.Tech in CS with Data Science and 9.47 GPA.
  * Uses GlassCard with hover animation for visual consistency.
  * 
  * @validates Requirements 2.4
@@ -44,7 +44,7 @@ function EducationWidget() {
       <div className="mt-4 pt-4 border-t border-[var(--glass-border)]">
         <div className="flex items-baseline gap-2">
           <span className="text-2xl font-bold text-[var(--accent-gold)]">
-            {education?.gpa || '9.5'}
+            {education?.gpa || '47'}
           </span>
           <span className="text-[var(--text-soft)] text-sm">GPA</span>
         </div>

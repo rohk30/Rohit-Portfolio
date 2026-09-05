@@ -227,7 +227,7 @@ export const personalData = {
     degree: 'B.Tech',
     specialization: 'Computer Science with Data Science',
     dateRange: 'Sept 2022 - Jun 2026',
-    gpa: '9.5',
+    gpa: '9.47',
     futurePlans: "Master's applications for Fall 2027",
   },
   leadership: {

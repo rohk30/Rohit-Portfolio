@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { navigationData } from '../../utils/data';
@@ -74,7 +74,7 @@ function MobileNavItem({ item, onClose }) {
  * 
  * Requirements: 1.5, 9.3, 9.4, 10.6
  */
-function MobileMenuDrawer({ isOpen, onClose }) {
+function MobileMenuDrawer({ isOpen, onClose, navItems: items }) {
   const drawerRef = useRef(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -230,7 +230,7 @@ function MobileMenuDrawer({ isOpen, onClose }) {
               initial="hidden"
               animate="visible"
             >
-              {navigationData.map((item) => (
+              {items.map((item) => (
                 <motion.div key={item.id} variants={itemVariants}>
                   <MobileNavItem item={item} onClose={onClose} />
                 </motion.div>
@@ -259,6 +259,31 @@ function MobileMenuDrawer({ isOpen, onClose }) {
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+
+  // Track whether user has visited home and navigated away
+  const [hasVisitedHome, setHasVisitedHome] = useState(() => {
+    try { return sessionStorage.getItem('has-visited-home') === '1'; } catch { return false; }
+  });
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      // Mark home as visited when they leave it
+      return () => {
+        try { sessionStorage.setItem('has-visited-home', '1'); } catch { /* ignore */ }
+        setHasVisitedHome(true);
+      };
+    }
+    return undefined;
+  }, [location.pathname]);
+
+  // Swap "Home" → "Overview" after first visit
+  const navItems = useMemo(() =>
+    navigationData.map((item) =>
+      item.id === 'home' && hasVisitedHome
+        ? { ...item, label: 'Overview', path: '/overview' }
+        : item
+    ),
+  [hasVisitedHome]);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -293,7 +318,7 @@ function Navbar() {
 
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center space-x-1">
-              {navigationData.map((item) => (
+              {navItems.map((item) => (
                 <NavItem key={item.id} item={item} />
               ))}
             </div>
@@ -333,6 +358,7 @@ function Navbar() {
       <MobileMenuDrawer
         isOpen={isMobileMenuOpen}
         onClose={handleCloseMenu}
+        navItems={navItems}
       />
     </>
   );

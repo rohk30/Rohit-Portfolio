@@ -1,59 +1,82 @@
-// Field targets are laid out for a right-handed batter viewed from behind the
-// striker, looking toward the bowler. The coordinates describe cricket regions,
-// not arbitrary UI slots.
+/**
+ * Shot navigation targets for the cricket field canvas.
+ *
+ * Positions are PERCENTAGE coordinates (0–100) within the square field area.
+ * The 800×800 SVG has center at (400,400) = (50%, 50%).
+ * Boundary circle: r=360 → radius = 45% from center.
+ * 30-yard circle: r=200 → radius = 25% from center.
+ *
+ * Boundary edge examples:
+ *   Top:    (50, 5)    Bottom: (50, 95)
+ *   Left:   (5, 50)    Right:  (95, 50)
+ *
+ * Batsman: (50%, 63.75%) → (400, 510) in 800×800 coords.
+ */
 export const SHOT_TARGETS = [
   {
     id: 'cover-drive',
     label: 'Cover Drive',
     subLabel: 'Experience',
     path: '/experience',
-    position: { x: 70, y: 49 },
-    bezierControl: { cx1: 59, cy1: 61, cx2: 68, cy2: 51 },
+    // Off-side cover, on the boundary rope
+    position: { x: 85, y: 20 },
+    trajectory: 'straight',
     ariaLabel: 'Play a cover drive to navigate to Experience',
+    result: { runs: 4, label: 'FOUR', type: 'four' },
   },
   {
     id: 'pull-shot',
     label: 'Pull Shot',
     subLabel: 'Projects',
     path: '/projects',
-    position: { x: 29, y: 57 },
-    bezierControl: { cx1: 45, cy1: 66, cx2: 35, cy2: 59 },
+    // Leg side, deep mid-wicket, on/over boundary
+    position: { x: 10, y: 42 },
+    trajectory: 'over-boundary',
     ariaLabel: 'Play a pull shot to navigate to Projects',
+    result: { runs: 6, label: 'SIX', type: 'six' },
   },
   {
-    id: 'straight-drive',
-    label: 'Straight Drive',
-    subLabel: 'Research',
-    path: '/research',
-    position: { x: 50, y: 31 },
-    bezierControl: { cx1: 50, cy1: 53, cx2: 50, cy2: 38 },
-    ariaLabel: 'Play a straight drive to navigate to Research',
+    id: 'defence',
+    label: 'Defence',
+    subLabel: 'About',
+    path: '/about',
+    // Dead bat, stays on the pitch near the batsman
+    position: { x: 50, y: 58 },
+    trajectory: 'short',
+    ariaLabel: 'Play a defensive block to navigate to About',
+    result: { runs: 0, label: 'DOT BALL', type: 'dot' },
   },
   {
     id: 'flick',
     label: 'Flick',
-    subLabel: 'About',
-    path: '/about',
-    position: { x: 34, y: 50 },
-    bezierControl: { cx1: 44, cy1: 63, cx2: 36, cy2: 54 },
-    ariaLabel: 'Play a flick through mid-wicket to navigate to About',
-  },
-  {
-    id: 'edge-to-slip',
-    label: 'Edge to Slip',
-    subLabel: 'Contact',
-    path: '/contact',
-    position: { x: 64, y: 43 },
-    bezierControl: { cx1: 57, cy1: 57, cx2: 62, cy2: 46 },
-    ariaLabel: 'Play an edge toward slip to navigate to Contact',
-  },
-  {
-    id: 'defensive-block',
-    label: 'Defence',
     subLabel: 'Overview',
     path: '/overview',
-    position: { x: 50, y: 69 },
-    bezierControl: { cx1: 52, cy1: 66, cx2: 51, cy2: 69 },
-    ariaLabel: 'Play a defensive block to navigate to Overview',
+    // Leg side, square leg boundary
+    position: { x: 15, y: 20 },
+    trajectory: 'straight',
+    ariaLabel: 'Play a flick through mid-wicket to navigate to Overview',
+    result: { runs: 4, label: 'FOUR', type: 'four' },
+  },
+  {
+    id: 'caught-at-point',
+    label: 'Caught at Point',
+    subLabel: 'Contact',
+    path: '/contact',
+    // Off-side, point fielder inside 30-yard circle
+    position: { x: 70, y: 55 },
+    trajectory: 'catch-curve',
+    ariaLabel: 'Edge caught at point to navigate to Contact',
+    result: { runs: 0, label: 'CAUGHT AT POINT', type: 'wicket' },
+  },
+  {
+    id: 'scoop',
+    label: 'Scoop',
+    subLabel: 'Research',
+    path: '/research',
+    // Behind the batsman, fine leg area, near 30-yard mark
+    position: { x: 50, y: 82 },
+    trajectory: 'scoop-curve',
+    ariaLabel: 'Play a scoop shot to navigate to Research',
+    result: { runs: 2, label: 'TWO RUNS', type: 'run' },
   },
 ];
