@@ -14,7 +14,7 @@ export const SHOT_TARGETS = [
     label: 'Cover Drive',
     subLabel: 'Experience',
     path: '/experience',
-    position: { x: 85, y: 20 },
+    position: { x: 82, y: 20 },
     trajectory: 'straight',
     ariaLabel: 'Play a cover drive to navigate to Experience',
     result: { runs: 4, label: 'FOUR', type: 'four' },

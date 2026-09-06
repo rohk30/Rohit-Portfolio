@@ -807,16 +807,23 @@ a { color: inherit; }
 
 @media (max-width: 700px) {
   .cricket-hero { min-height: 100svh; }
-  .cricket-hero__identity { padding: 1rem 1rem 4.5rem; }
-  .cricket-hero__identity h1 { max-width: 18ch; font-size: clamp(1.85rem, 9vw, 3rem); }
-  .cricket-hero__identity p { max-width: 24rem; font-size: 0.92rem; }
+  .cricket-hero__identity { padding: 1rem 1rem 5.5rem; }
+  .cricket-hero__identity h1 { max-width: 18ch; font-size: clamp(1.6rem, 7vw, 2.4rem); }
+  .cricket-hero__identity p { max-width: 20rem; font-size: 0.85rem; }
+  .cricket-hero__currently { font-size: 0.62rem; }
+  .cricket-hero__currently strong { font-size: 0.68rem; }
   .cricket-hero__scoremark { display: none; }
   .cricket-hero__camera { transform-origin: 50% 61%; }
-  .cricket-hero__bowl-cta { width: calc(100% - 2rem); bottom: 1.5rem; }
-  .cricket-hero__bowl-cta button { width: min(100%, 290px); }
-  .shot-target { padding: 0.26rem 0.38rem; }
-  .shot-target__label { font-size: 0.54rem; }
+  .cricket-hero__bowl-cta { left: 0; right: 0; bottom: 1.2rem; transform: none; width: auto; align-items: center; }
+  .cricket-hero__bowl-cta button { width: auto; max-width: 80vw; font-size: 0.72rem; min-width: auto; padding: 0.75rem 1.2rem; }
+  .cricket-hero__bowl-cta > span { font-size: 0.6rem; }
+  .cricket-hero__welcome { font-size: clamp(0.7rem, 3.5vw, 1rem); padding-inline: 0.75rem; top: clamp(3.5rem, 6vh, 4.5rem); }
+  .cricket-hero__action-status, .cricket-hero__field-prompt { font-size: 0.8rem; bottom: 1.5rem; }
+  .shot-target { padding: 0.22rem 0.35rem; max-width: 45vw; }
+  .shot-target__dot { width: 7px; height: 7px; flex: 0 0 7px; }
+  .shot-target__label { font-size: 0.6rem; white-space: normal; }
   .shot-target__sublabel { font-size: 0.5rem; }
+  .shot-target__copy { gap: 0.06rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -833,7 +840,7 @@ a { color: inherit; }
   width: 100%;
   height: 100%;
   background: radial-gradient(ellipse at 50% 50%, #0e2818 0%, #091a0f 45%, #050d08 100%);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .cricket-field-canvas__ground {
@@ -1052,17 +1059,33 @@ a { color: inherit; }
   border-color: rgba(230, 90, 72, 0.25);
 }
 
-/* Responsive — hide HUD details on small screens */
+/* Responsive — scale down HUD on small screens */
 @media (max-width: 700px) {
-  .hud-scoreboard { top: 4.5rem; left: 0.5rem; }
-  .hud-over { top: 4.5rem; right: 0.5rem; }
-  .hud-player-card--bowler { bottom: 4.5rem; left: 0.5rem; }
-  .hud-player-card--batsman { bottom: 4.5rem; right: 0.5rem; }
+  .hud-scoreboard { top: 0.5rem; left: 0.5rem; }
+  .hud-scoreboard__header { padding: 0.3rem 0.5rem; }
+  .hud-scoreboard__badge { font-size: 0.55rem; }
+  .hud-scoreboard__stats { padding: 0.35rem 0; }
+  .hud-scoreboard__stat { padding: 0 0.5rem; }
+  .hud-scoreboard__label { font-size: 0.42rem; }
   .hud-scoreboard__value { font-size: 0.9rem; }
+  .hud-scoreboard__divider { height: 20px; }
+  .hud-over { top: 0.5rem; right: 0.5rem; padding: 0.3rem 0.5rem; }
+  .hud-over__label { font-size: 0.42rem; }
+  .hud-over__ball { width: 20px; height: 20px; font-size: 0.52rem; }
+  .hud-player-card--bowler { bottom: 3.5rem; left: 0.5rem; padding: 0.5rem 0.7rem; }
+  .hud-player-card--batsman { bottom: 3.5rem; right: 0.5rem; padding: 0.5rem 0.7rem; }
+  .hud-player-card__role { font-size: 0.48rem; }
+  .hud-player-card__name { font-size: 0.72rem; }
+  .hud-player-card__detail { font-size: 0.58rem; }
+  .hud-player-card__figures { font-size: 0.52rem; }
 }
 
 @media (max-width: 480px) {
   .hud-over { display: none; }
+  .hud-player-card__figures { display: none; }
+  .hud-scoreboard__stat:last-child { display: none; }
+  .hud-scoreboard__divider:last-of-type { display: none; }
+  .cricket-hero__eyebrow { font-size: 0.58rem; }
 }
 
 /* --------------------------------------------------------------------------

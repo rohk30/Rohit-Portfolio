@@ -40,6 +40,7 @@ function ShotNavigation({ visible, shots, onShotSelect, compact = false }) {
           maxWidth: '100vh',
           aspectRatio: '1 / 1',
           maxHeight: '100%',
+          overflow: 'visible',
           pointerEvents: visible ? 'auto' : 'none',
         }}
       >
