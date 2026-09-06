@@ -298,6 +298,9 @@ function Navbar() {
     setIsMobileMenuOpen(false);
   }, []);
 
+  // Hide navbar entirely on the home/hero page
+  if (location.pathname === '/') return null;
+
   return (
     <>
       <nav 
