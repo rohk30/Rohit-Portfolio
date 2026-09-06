@@ -1141,3 +1141,106 @@ a { color: inherit; }
     padding-inline: 1rem;
   }
 }
+
+/* --------------------------------------------------------------------------
+   About + Contact — Two-column split layout
+   -------------------------------------------------------------------------- */
+
+.about-split {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: clamp(3rem, 6vw, 8rem);
+  width: min(100%, 1440px);
+  margin-inline: auto;
+  padding: 6rem clamp(1rem, 4vw, 3.5rem) 5rem;
+  min-height: 100vh;
+}
+
+/* Left column — scrolls naturally with the page */
+.about-split__left {
+  min-width: 0;
+}
+
+/* Right column — sticky contact card, pushed to right edge */
+.about-split__right {
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.about-contact-sticky {
+  position: sticky;
+  top: 6rem;
+  width: 100%;
+  max-width: 340px;
+}
+
+/* Contact card */
+.about-contact-card {
+  padding: 2rem !important;
+}
+
+.about-contact-card__title {
+  margin: 0;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.about-contact-card__subtitle {
+  margin: 0.5rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.about-contact-card__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+}
+
+.about-contact-card__link {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-card-bg);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: border-color 250ms ease, background 250ms ease, color 250ms ease;
+}
+
+.about-contact-card__link:hover {
+  border-color: var(--glass-hover-border);
+  background: var(--glass-bg);
+  color: var(--accent-gold);
+}
+
+.about-contact-card__link svg {
+  color: var(--accent-gold);
+  flex-shrink: 0;
+}
+
+.about-contact-card__resume {
+  display: flex;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+/* Responsive: stack vertically on smaller screens */
+@media (max-width: 900px) {
+  .about-split {
+    grid-template-columns: 1fr;
+    padding-top: 5rem;
+  }
+
+  .about-contact-sticky {
+    position: static;
+  }
+}

@@ -16,7 +16,6 @@ export const navigationData = [
   { id: 'projects', label: 'Projects', path: '/projects' },
   { id: 'research', label: 'Research', path: '/research' },
   { id: 'about', label: 'About', path: '/about' },
-  { id: 'contact', label: 'Contact', path: '/contact' },
 ];
 
 export const experienceData = [
@@ -209,13 +208,13 @@ export const researchData = [
     id: 'sickle-cell-research',
     title: '4-Phase Sickle Cell Prediction',
     authors: ['Rohit Kumar Birakayala'],
-    venue: 'Independent research / final-year project',
-    date: '2026',
+    venue: 'Independent research / Final-year project',
+    date: '2025',
     abstract:
-      'Research-driven medical imaging pipeline combining cell segmentation, morphological feature extraction, dimensionality reduction, GMM clustering and image-level classification.',
+      'Research-driven medical imaging pipeline combining cell segmentation, morphological feature extraction, dimensionality reduction, GMM clustering and image-level classification into sickle & non-sickled cells.',
     publicationUrl: null,
     codeUrl: null,
-    category: 'technical-report',
+    category: 'preprint',
     citationCount: 0,
     status: 'ongoing',
   },

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
 // Layout Components
@@ -35,7 +35,7 @@ function AnimatedRoutes() {
         <Route path="/projects/:projectId" element={<ProjectDetails />} />
         <Route path="/research" element={<Research />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact" element={<Navigate to="/about" replace />} />
         <Route path="/overview" element={<Overview />} />
       </Routes>
     </AnimatePresence>
