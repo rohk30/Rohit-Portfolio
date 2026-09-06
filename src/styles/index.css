@@ -282,9 +282,9 @@ a { color: inherit; }
 .skill-note { color: var(--text-muted); font: 500 0.66rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; }
 .skill-marquee-shell { overflow: hidden; position: relative; padding: 1rem 0; mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent); }
 .skill-marquee { display: flex; width: max-content; gap: 0.9rem; animation: marquee 26s linear infinite; }
-.skill-logo { display: inline-flex; align-items: center; justify-content: center; min-width: 128px; height: 70px; padding: 0 0.9rem; border: 1px solid var(--border); border-radius: 1.1rem; background: rgba(13,31,13,0.72); transition: transform 200ms ease, border-color 200ms ease; }
+.skill-logo { display: inline-flex; align-items: center; justify-content: center; min-width: 100px; height: 90px; padding: 0.7rem 0.9rem; border: 1px solid var(--border); border-radius: 1.1rem; background: rgba(13,31,13,0.72); transition: transform 200ms ease, border-color 200ms ease; }
 .skill-logo:hover { transform: translateY(-4px); border-color: rgba(201,162,39,0.3); }
-.skill-logo-inner { display: inline-flex; align-items: center; gap: 0.6rem; }
+.skill-logo-inner { display: inline-flex; flex-direction: column; align-items: center; gap: 0.4rem; }
 .skill-logo span { display: inline-block; color: #eaf3ff; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
 .skill-logo svg { width: 29px; height: 29px; flex-shrink: 0; }
 .cpp-icon { color: #5c9bd5; font: 800 0.9rem/1 var(--mono); }
@@ -295,7 +295,7 @@ a { color: inherit; }
 .experience-year { color: var(--accent-yellow); font: 600 0.7rem/1 var(--mono); }
 .experience-role strong { display: block; color: #fff; font-size: 1rem; }
 .experience-role span { display: block; margin-top: 0.25rem; color: var(--text-muted); font-size: 0.78rem; }
-.experience-date { color: var(--text-muted); font: 500 0.72rem/1 var(--mono); text-align: right; }
+.experience-date { color: var(--text-muted); font: 500 0.82rem/1 var(--mono); text-align: right; }
 .experience-arrow { color: var(--text-muted); transition: transform 180ms ease, color 180ms ease; }
 .experience-preview-item:hover .experience-arrow { transform: translateX(3px); color: var(--accent-gold); }
 
@@ -406,7 +406,7 @@ a { color: inherit; }
 .project-card-updated:hover .project-card-link-label { color: var(--accent-gold); }
 
 /* About page */
-.about-intro { display: grid; grid-template-columns: minmax(0,1fr) minmax(280px,0.46fr); gap: 4rem; align-items: center; margin-top: 1.5rem; }
+.about-intro { display: grid; grid-template-columns: minmax(0,1fr) minmax(260px, 340px); gap: 2.5rem; align-items: center; margin-top: 1.5rem; }
 .about-intro h1 { margin: 0; color: #fff; font-size: clamp(3.2rem, 7vw, 7rem); line-height: 0.88; letter-spacing: -0.07em; }
 .about-intro h1 span { color: var(--accent-gold); }
 .about-intro p { max-width: 760px; margin-top: 1.5rem; color: var(--text-soft); font-size: 1.05rem; line-height: 1.8; }
@@ -467,7 +467,8 @@ a { color: inherit; }
   }
 
   .cricket-hero {
-    height: 150vh !important;
+    height: 100svh !important;
+    max-height: 100svh !important;
   }
 
   .cricket-hero__personal-info {
@@ -493,7 +494,8 @@ a { color: inherit; }
   width: 100%;
   height: 100vh;
   height: 100svh;
-  min-height: 620px;
+  max-height: 100vh;
+  max-height: 100svh;
   overflow: hidden;
   isolation: isolate;
   background: #0b1412;
@@ -1150,22 +1152,23 @@ a { color: inherit; }
   display: grid;
   grid-template-columns: 1fr 340px;
   gap: clamp(3rem, 6vw, 8rem);
-  width: min(100%, 1440px);
+  max-width: 1440px;
   margin-inline: auto;
-  padding: 6rem clamp(1rem, 4vw, 3.5rem) 5rem;
+  padding: 6rem clamp(1.5rem, 4vw, 3.5rem) 5rem;
+  padding-right: clamp(1.5rem, 5vw, 4rem);
   min-height: 100vh;
 }
 
 /* Left column — scrolls naturally with the page */
 .about-split__left {
   min-width: 0;
+  max-width: 860px;
 }
 
 /* Right column — sticky contact card, pushed to right edge */
 .about-split__right {
   min-width: 0;
-  display: flex;
-  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .about-contact-sticky {
@@ -1243,4 +1246,198 @@ a { color: inherit; }
   .about-contact-sticky {
     position: static;
   }
+}
+
+/* Currently section — photo replacing metrics */
+.currently-photo {
+  align-self: center;
+  max-width: 280px;
+  max-height: 320px;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid var(--border);
+  background: #0d1f0d;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+
+  width: fit-content;
+  height: fit-content;
+}
+
+.currently-photo img {
+  width: 100%;
+  height: 100%;
+  max-width: 280px;
+  max-height: 320px;
+  object-fit: contain; /* Shrinks the image to fit entirely inside without cropping */
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Experience timeline connector + promotion badge
+   -------------------------------------------------------------------------- */
+
+.experience-preview-group {
+  position: relative;
+}
+
+/* Vertical connector between promoted roles */
+.experience-promotion-connector {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0 0 25px;
+  height: 2.5rem;
+}
+
+.experience-promotion-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-gold), rgba(201, 162, 39, 0.15));
+}
+
+.experience-promotion-line:first-child {
+  flex: 0 0 30px;
+  background: linear-gradient(90deg, rgba(201, 162, 39, 0.15), var(--accent-gold));
+}
+
+.experience-promotion-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(201, 162, 39, 0.1);
+  color: var(--accent-gold);
+  font: 700 0.62rem/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 0 20px rgba(201, 162, 39, 0.08);
+}
+
+/* Connected items get a subtle left accent */
+.experience-preview-item--connected {
+  border-left: 2px solid rgba(201, 162, 39, 0.25);
+  margin-left: 24px;
+  padding-left: calc(0.7rem + 1px);
+}
+
+/* Override default border-bottom for connected pairs */
+.experience-preview-group:has(.experience-promotion-connector) .experience-preview-item {
+  border-top: none;
+}
+
+@media (max-width: 760px) {
+  .experience-promotion-connector { padding-left: 12px; height: 2rem; }
+  .experience-preview-item--connected { margin-left: 12px; }
+  .experience-promotion-badge { font-size: 0.55rem; padding: 0.22rem 0.5rem; }
+}
+
+/* --------------------------------------------------------------------------
+   Experience page — Timeline promotion connector
+   -------------------------------------------------------------------------- */
+
+.timeline-promotion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.2rem 0 0.2rem 12px;
+}
+
+.timeline-promotion__line {
+  width: 2px;
+  height: 10px;
+  background: var(--accent-gold);
+  opacity: 0.4;
+}
+
+.timeline-promotion__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  background: rgba(201, 162, 39, 0.08);
+  color: var(--accent-gold);
+  font: 700 0.55rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Experience page — Card promotion connector (between cards)
+   -------------------------------------------------------------------------- */
+
+.exp-card-promotion {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 0;
+}
+
+.exp-card-promotion__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.3), transparent);
+}
+
+.exp-card-promotion__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  background: rgba(201, 162, 39, 0.08);
+  color: var(--accent-gold);
+  font: 700 0.65rem/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 0 24px rgba(201, 162, 39, 0.06);
+}
+
+/* Beyond Code panel — text + photo split */
+.about-beyond-split {
+  display: grid;
+  grid-template-columns: 1fr minmax(160px, 240px);
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 0.8rem;
+}
+
+.about-beyond-photo {
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+}
+
+.about-beyond-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .about-beyond-split { grid-template-columns: 1fr; }
+}
+
+/* Beyond Code — overview page photo */
+.beyond-photo {
+  align-self: center;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid var(--border);
+  background: #0d1f0d;
+}
+
+.beyond-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }

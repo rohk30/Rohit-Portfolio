@@ -73,8 +73,8 @@ function About() {
               <h2>{leadership.role}</h2>
               <p className="about-accent">{leadership.organization}</p>
               <div className="about-impact">
-                <strong>500+</strong>
-                <span>attendees across 10+ events</span>
+                <strong>1000+</strong>
+                <span>attendees across 20+ events</span>
               </div>
               <div className="about-logo-row">
                 <img src="/images/branding/juvenile-care.png" alt="Juvenile Care NGO logo" />
@@ -86,11 +86,20 @@ function About() {
               <div className="about-panel-icon"><Trophy /></div>
               <span className="section-kicker">BEYOND CODE</span>
               <h2>{hobbies.interests.join(' · ')}</h2>
-              <p>{hobbies.narrative}</p>
-              <div className="about-interest-row">
-                <span><Trophy size={15} /> State-level athlete</span>
-                <span><Plane size={15} /> Travel</span>
-                <span><MapPin size={15} /> Bengaluru</span>
+              <div className="about-beyond-split">
+                <div>
+                  <p>{hobbies.narrative}</p>
+                  <div className="about-interest-row">
+                    <span><Trophy size={15} /> State-level athletics</span>
+                    <span><Plane size={15} /> Travel</span>
+                    <span><MapPin size={15} /> Bengaluru</span>
+                  </div>
+                </div>
+                {hobbies.travelPhotos?.[0] && (
+                  <div className="about-beyond-photo">
+                    <img src={hobbies.travelPhotos[0]} alt="Hobbies and travel" />
+                  </div>
+                )}
               </div>
             </section>
           </div>

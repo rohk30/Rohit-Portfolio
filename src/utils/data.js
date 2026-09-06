@@ -4,6 +4,7 @@ import talentRecruitFullLogo from '../assets/images/experiences/TR_full.png';
 import nielsenSmallLogo from '../assets/images/experiences/Nielsen_logo.png';
 import ubsSmallLogo from '../assets/images/experiences/UBS_logo.png';
 import talentRecruitSmallLogo from '../assets/images/experiences/TR_logo.png';
+import hobbiesPhoto from '../assets/images/hobbies.png';
 
 /**
  * Portfolio content store.
@@ -20,12 +21,29 @@ export const navigationData = [
 
 export const experienceData = [
   {
-    id: 'nielsen',
+    id: 'nielsen-mts',
+    role: 'Member of Technical Staff 1',
+    company: 'Gracenote, Nielsen',
+    companyShort: 'Nielsen',
+    location: 'Bengaluru, India',
+    date: 'July 2026 - Present',
+    bullets: [
+      'Built monitoring, alerting, and observability systems for the Data Science team using Grafana, Prometheus, and CloudWatch, reducing detection time for critical system failures to <1 min and internal systems to <5 min',
+      'Automated Jira ticket enrichment using webhooks, regex pipelines, and LLM-based extraction to populate Call Letter and ProgServ ID custom fields, eliminating manual processing across 10,000+ annual tickets',
+    ],
+    techStack: ['Python', 'Claude', 'Grafana', 'AWS CloudWatch', 'Prometheus', 'LLMs'],
+    metrics: [
+      { value: '<1 min', description: 'detection time for critical systems' },
+      { value: '10k+', description: 'eliminated manual processing for tickets' },
+    ],
+  },
+  {
+    id: 'nielsen-intern',
     role: 'Data Scientist Intern',
     company: 'Gracenote, Nielsen',
     companyShort: 'Nielsen',
     location: 'Bengaluru, India',
-    date: 'Jan 2026 - Present',
+    date: 'Jan 2026 - July 2026',
     bullets: [
       'Improved version-match precision from 48% to 87% by engineering a version-aware media matching pipeline using Claude Haiku/Sonnet hosted on Amazon EC2 with semantic label extraction.',
       'Optimized DSPy prompts with COPRO, MIPRO and InferRules, evaluated on curated GIST-sampled datasets.',
@@ -104,9 +122,11 @@ export const companyData = [
 ];
 
 export const experienceBrandData = {
-  nielsen: { logoUrl: nielsenSmallLogo, fallback: 'N', color: '#00a651' },
-  ubs: { logoUrl: ubsSmallLogo, fallback: 'UBS', color: '#e60000' },
-  'talent-recruit': { logoUrl: talentRecruitSmallLogo, fallback: 'TR', color: '#20b486' },
+  'nielsen-mts': { logoUrl: nielsenSmallLogo, fallback: 'N', color: '#00a651', name: 'Nielsen' },
+  'nielsen-intern': { logoUrl: nielsenSmallLogo, fallback: 'N', color: '#00a651', name: 'Nielsen' },
+  nielsen: { logoUrl: nielsenSmallLogo, fallback: 'N', color: '#00a651', name: 'Nielsen' },
+  ubs: { logoUrl: ubsSmallLogo, fallback: 'UBS', color: '#e60000', name: 'UBS' },
+  'talent-recruit': { logoUrl: talentRecruitSmallLogo, fallback: 'TR', color: '#20b486', name: 'TalentRecruit' },
 };
 
 export const projectData = [
@@ -131,7 +151,7 @@ export const projectData = [
       'A road-safety system that detects important road signs with YOLO and communicates detected information through text-to-speech to support safer navigation.',
     techStack: ['Python', 'YOLO', 'PyTorch', 'RoboFlow', 'Kaggle', 'pyttsx3'],
     metrics: ['36-hour hackathon', 'Final Shark Tank round', 'SDG: Innovation & Infrastructure'],
-    githubUrl: null,
+    githubUrl: 'https://github.com/rohk30/SignSentry',
     featured: true,
     image: '/images/projects/signsentry.png',
     caseStudy: true,
@@ -144,10 +164,11 @@ export const projectData = [
       'A mobile expense-sharing application for group trips, with live balances and graph-based settlement optimization to reduce unnecessary repayment transactions.',
     techStack: ['Flutter', 'Dart', 'Firebase', 'Graph Algorithms'],
     metrics: ['Real-time sync', 'Debt simplification', 'Mobile application'],
-    githubUrl: null,
+    githubUrl: 'https://github.com/rohk30/Own-Splitwise-Copy',
     featured: true,
     image: '/images/projects/splitwise.jpeg',
     caseStudy: true,
+    liveUrl: 'https://splitwise-own.web.app'
   },
   {
     id: 'flashcard-generator',
@@ -172,7 +193,7 @@ export const projectData = [
     metrics: ['7 emotion classes', 'Keras model', 'Face detection'],
     githubUrl: 'https://github.com/rohk30/FaceEmotionsDetection',
     featured: false,
-    image: null,
+    image: '/images/projects/face-emotion-classification.jpeg',
     caseStudy: false,
   },
   {
@@ -185,8 +206,9 @@ export const projectData = [
     metrics: ['First Flutter project', 'Personal milestone'],
     githubUrl: 'https://github.com/rohk30/Rohit-Notes2',
     featured: false,
-    image: null,
+    image: '/images/projects/my-notes-app.png',
     caseStudy: false,
+    liveUrl: 'rohit-notes.web.app',
   },
   {
     id: 'tic-tac-toe',
@@ -198,7 +220,7 @@ export const projectData = [
     metrics: ['Built from scratch', 'Early project'],
     githubUrl: 'https://github.com/rohk30/Tic-Tac-Toe',
     featured: false,
-    image: null,
+    image: '/images/projects/tic-tac-toe-logo.jpeg',
     caseStudy: false,
   },
 ];
@@ -207,7 +229,7 @@ export const researchData = [
   {
     id: 'sickle-cell-research',
     title: '4-Phase Sickle Cell Prediction',
-    authors: ['Rohit Kumar Birakayala'],
+    authors: ['Rohit Kumar Birakayala + 2'],
     venue: 'Independent research / Final-year project',
     date: '2025',
     abstract:
@@ -218,6 +240,20 @@ export const researchData = [
     citationCount: 0,
     status: 'ongoing',
   },
+  {
+    id: 'confidence-based-tool-routing',
+    title: 'Confidence Based Tool Routing for Agents',
+    authors: ['Rohit Kumar Birakayala + 2'],
+    venue: 'Independent research ',
+    date: '2026',
+    abstract:
+      "LLM agents often call external tools (search, calculator, code execution) even when they already know the answer, wasting cost and time. This project uses the internal + external confidence as a gate: high confidence means answer directly, low confidence means call a tool. The goal is to find one confidence signal that works across all tool types and measure the cost-accuracy tradeoff using a custom metric (Cost Per Successful Task).",
+    publicationUrl: null,
+    codeUrl: null,
+    category: 'technical-report',
+    citationCount: 0,
+    status: 'ongoing',
+  }
 ];
 
 export const personalData = {
@@ -232,13 +268,13 @@ export const personalData = {
   leadership: {
     role: 'Vice Chairperson',
     organization: 'Juvenile Care NGO, VIT',
-    impact: '500+ attendees served',
+    impact: '1000+ attendees served',
   },
   hobbies: {
     narrative:
       'Away from code, I like being active, travelling and competing. Cricket, tennis and football are constants, and sport has been a big part of how I approach competition, discipline and teamwork.',
-    travelPhotos: [],
-    interests: ['Travel', 'Cricket', 'Tennis', 'Football', 'State-level athletics'],
+    travelPhotos: [hobbiesPhoto],
+    interests: ['Travel', 'Exploring', 'Cricket', 'Tennis', 'Badminton', 'State-level athletics'],
   },
 };
 

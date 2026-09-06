@@ -153,7 +153,7 @@ function PublicationCard({ publication }) {
     <GlassCard
       as="article"
       hover
-      className="p-6 h-full flex flex-col"
+      className="group p-6 h-full flex flex-col"
     >
       {/* Header: Category icon, category name, and status badge */}
       <div className="flex items-center justify-between gap-3 mb-3">
@@ -220,7 +220,7 @@ function PublicationCard({ publication }) {
         <div className="mb-4 flex-grow">
           <div className="flex items-start gap-2">
             <Quote className="w-4 h-4 text-[var(--text-soft)] flex-shrink-0 mt-0.5" aria-hidden="true" />
-            <p className="text-[var(--text-soft)] text-sm leading-relaxed line-clamp-4">
+            <p className="text-[var(--text-soft)] text-sm leading-relaxed line-clamp-4 group-hover:line-clamp-none transition-all duration-300">
               {abstract}
             </p>
           </div>

@@ -40,7 +40,7 @@ function Projects() {
           </h1>
           <p className="text-[var(--text-soft)] text-lg max-w-2xl">
             Technical projects showcasing full-stack development, machine learning, 
-            and agentic AI systems. Click on any project to view the source code on GitHub.
+            and agentic AI systems. Click on any project to learn more.
           </p>
         </header>
 

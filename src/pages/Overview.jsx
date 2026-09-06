@@ -5,6 +5,7 @@ import CompanyLogoStrip from '../components/sections/CompanyLogoStrip';
 import ProjectShowcase from '../components/sections/ProjectShowcase';
 import PlayNextBallWidget from '../components/cricket/PlayNextBallWidget';
 import { experienceData, personalData, contactData } from '../utils/data';
+import overviewPhoto from '../assets/images/rohit-graduation-overview.jpeg';
 import {
   SiPython,
   SiJavascript,
@@ -53,7 +54,7 @@ function SkillMarquee() {
           <div className="section-kicker">TOOLS OF THE TRADE</div>
           <h2 id="skills-heading" className="section-title compact-title">A toolkit that keeps evolving.</h2>
         </div>
-        <span className="skill-note">logos over labels</span>
+        {/* <span className="skill-note">logos over labels</span> */}
       </div>
       <div className="skill-marquee-shell">
         <div className="skill-marquee">
@@ -85,19 +86,8 @@ function Currently() {
           <strong>AI × software × systems</strong>
         </div>
       </div>
-      <div className="currently-metrics">
-        <div className="mini-metric">
-          <strong>48 → 87%</strong>
-          <span>version-match precision</span>
-        </div>
-        <div className="mini-metric">
-          <strong>10k+</strong>
-          <span>production records indexed</span>
-        </div>
-        <div className="mini-metric">
-          <strong>25%+</strong>
-          <span>editor violation reduction</span>
-        </div>
+      <div className="currently-photo">
+        <img src={overviewPhoto} alt="Rohit Kumar at graduation" />
       </div>
     </section>
   );
@@ -114,17 +104,36 @@ function ExperiencePreview() {
         <Link to="/experience" className="section-link">Full experience <ArrowRight size={17} aria-hidden="true" /></Link>
       </div>
       <div className="experience-preview-list">
-        {experienceData.map((experience, index) => (
-          <Link to="/experience" className="experience-preview-item" key={experience.id}>
-            <span className="experience-year">0{index + 1}</span>
-            <div className="experience-role">
-              <strong>{experience.role}</strong>
-              <span>{experience.company}</span>
+        {experienceData.map((experience, index) => {
+          const nextExp = experienceData[index + 1];
+          const isPromotionSource = nextExp && nextExp.companyShort === experience.companyShort;
+          const prevExp = experienceData[index - 1];
+          const isPromotionTarget = prevExp && prevExp.companyShort === experience.companyShort;
+
+          return (
+            <div key={`${experience.id}-${index}`} className="experience-preview-group">
+              {isPromotionTarget && (
+                <div className="experience-promotion-connector" aria-hidden="true">
+                  <div className="experience-promotion-line" />
+                  <span className="experience-promotion-badge">
+                    <ArrowRight size={13} style={{ transform: 'rotate(-90deg)' }} />
+                    <span style={{ fontSize: '1.15rem' }}>CONVERTED</span>
+                  </span>
+                  <div className="experience-promotion-line" />
+                </div>
+              )}
+              <Link to="/experience" state={{ scrollTo: experience.id }} className={`experience-preview-item ${isPromotionSource || isPromotionTarget ? 'experience-preview-item--connected' : ''}`}>
+                <span className="experience-year">0{index + 1}</span>
+                <div className="experience-role">
+                  <strong style={{ fontSize: '1.25rem' }}>{experience.role}</strong>
+                  <span style={{ fontSize: '1.15rem' }}>{experience.company}</span>
+                </div>
+                <span className="experience-date">{experience.date}</span>
+                <ArrowRight className="experience-arrow" size={18} aria-hidden="true" />
+              </Link>
             </div>
-            <span className="experience-date">{experience.date}</span>
-            <ArrowRight className="experience-arrow" size={18} aria-hidden="true" />
-          </Link>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
@@ -141,9 +150,10 @@ function BeyondCode() {
           {personalData.hobbies.interests.map((interest) => <span key={interest}>{interest}</span>)}
         </div>
       </div>
-      <div className="beyond-photo-placeholder">
-        <span>Travel / sport photos</span>
-        <small>More personal imagery coming soon</small>
+      <div className="beyond-photo">
+        {personalData.hobbies.travelPhotos?.[0] && (
+          <img src={personalData.hobbies.travelPhotos[0]} alt="Hobbies and travel" />
+        )}
       </div>
     </section>
   );
@@ -155,8 +165,8 @@ function Overview() {
       <div className="home-container">
         <Currently />
         <CompanyLogoStrip />
-        <ProjectShowcase />
         <SkillMarquee />
+        <ProjectShowcase />
         <ExperiencePreview />
         <BeyondCode />
 

@@ -22,14 +22,12 @@ function ProjectCard({ project }) {
   } = project ?? {};
 
   const handleClick = () => {
-    if (caseStudy && id) {
+    if (id) {
       navigate(`/projects/${id}`);
-      return;
     }
-    if (githubUrl) window.open(githubUrl, '_blank', 'noopener,noreferrer');
   };
 
-  const isInteractive = Boolean(caseStudy || githubUrl);
+  const isInteractive = Boolean(id);
 
   return (
     <GlassCard
@@ -59,7 +57,7 @@ function ProjectCard({ project }) {
         {eyebrow && <div className="project-card-eyebrow">{eyebrow}</div>}
         <div className="project-title-row">
           <h2>{title}</h2>
-          {caseStudy ? <ArrowUpRight size={19} className="project-card-arrow" aria-hidden="true" /> : githubUrl ? <GitBranch size={17} aria-hidden="true" /> : null}
+          <ArrowUpRight size={19} className="project-card-arrow" aria-hidden="true" />
         </div>
         <p>{description}</p>
 
@@ -74,8 +72,8 @@ function ProjectCard({ project }) {
             {techStack.map((tech) => <Badge key={tech} text={tech} variant="default" size="sm" />)}
           </div>
           <span className="project-card-link-label">
-            {caseStudy ? 'View case study' : githubUrl ? 'View GitHub' : 'Project'}
-            {isInteractive && (caseStudy ? <ArrowUpRight size={14} /> : <ExternalLink size={14} />)}
+            View project
+            <ArrowUpRight size={14} />
           </span>
         </div>
       </div>

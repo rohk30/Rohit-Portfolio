@@ -1,4 +1,5 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PageTransition from '../components/layout/PageTransition';
 import Timeline from '../components/sections/Timeline';
 import ExperienceCard from '../components/sections/ExperienceCard';
@@ -21,14 +22,28 @@ import { experienceData } from '../utils/data';
  * <Route path="/experience" element={<Experience />} />
  */
 function Experience() {
-  // Track the currently active/selected experience
+  const location = useLocation();
   const [activeId, setActiveId] = useState(null);
-  
-  // Refs to each ExperienceCard for scroll-to functionality
   const cardRefs = useRef({});
 
-  // Graceful degradation: ensure data is an array
   const safeExperienceData = Array.isArray(experienceData) ? experienceData : [];
+
+  // Auto-scroll to a specific card when arriving from Overview
+  useEffect(() => {
+    const scrollToId = location.state?.scrollTo;
+    if (scrollToId) {
+      // Small delay to let cards render and refs register
+      const timer = setTimeout(() => {
+        setActiveId(scrollToId);
+        const cardElement = cardRefs.current[scrollToId];
+        if (cardElement) {
+          cardElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+    return undefined;
+  }, [location.state]);
 
   /**
    * Handles timeline item click - scrolls to and highlights the corresponding card
@@ -102,14 +117,29 @@ function Experience() {
                 <p className="text-[var(--text-soft)] text-sm mt-2">Check back later for updates.</p>
               </div>
             ) : (
-              safeExperienceData.map(experience => (
-                <ExperienceCard
-                  key={experience.id || Math.random()}
-                  ref={(element) => setCardRef(experience.id, element)}
-                  experience={experience}
-                  isActive={experience.id === activeId}
-                />
-              ))
+              safeExperienceData.map((experience, index) => {
+                const prevExp = safeExperienceData[index - 1];
+                const isSameCompany = prevExp && prevExp.companyShort === experience.companyShort;
+
+                return (
+                  <div key={experience.id}>
+                    {isSameCompany && (
+                      <div className="exp-card-promotion" aria-hidden="true">
+                        <div className="exp-card-promotion__line" />
+                        <span className="exp-card-promotion__badge">
+                          <span className="text-xl font-bold">↑</span> Intern <span className="text-xl font-bold">→</span> FTE Conversion
+                        </span>
+                        <div className="exp-card-promotion__line" />
+                      </div>
+                    )}
+                    <ExperienceCard
+                      ref={(element) => setCardRef(experience.id, element)}
+                      experience={experience}
+                      isActive={experience.id === activeId}
+                    />
+                  </div>
+                );
+              })
             )}
           </main>
         </div>

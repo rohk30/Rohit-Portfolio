@@ -1,4 +1,4 @@
-import { ArrowLeft, GitBranch, Sparkles } from 'lucide-react';
+import { ArrowLeft, GitBranch, Globe, Sparkles } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import PageTransition from '../components/layout/PageTransition';
 import { projectData } from '../utils/data';
@@ -29,7 +29,8 @@ function ProjectDetails() {
             <h1>{project.title}</h1>
             <p>{project.description}</p>
             <div className="detail-actions">
-              {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-primary"><GitBranch size={16} /> GitHub</a>}
+              {project.liveUrl && <a href={project.liveUrl} target="_blank" rel="noreferrer" className="button-primary"><Globe size={16} /> Live Demo</a>}
+              {project.githubUrl && <a href={project.githubUrl} target="_blank" rel="noreferrer" className="button-secondary"><GitBranch size={16} /> GitHub</a>}
               <span className="detail-status"><Sparkles size={15} /> Case study foundation</span>
             </div>
           </div>

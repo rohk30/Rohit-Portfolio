@@ -66,8 +66,8 @@ export default function ScoreboardHUD({ visible, reducedMotion = false }) {
       >
         <span className="hud-player-card__role">BATSMAN</span>
         <span className="hud-player-card__name">ROHIT K.</span>
-        <span className="hud-player-card__detail">(82*)</span>
-        <div className="hud-player-card__figures">96b · 9×4 · 2×6</div>
+        <span className="hud-player-card__detail">(62*)</span>
+        <div className="hud-player-card__figures">39b · 9×4 · 2×6</div>
       </motion.div>
 
       {/* ── Top-right: This over ── */}
