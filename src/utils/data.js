@@ -142,6 +142,7 @@ export const projectData = [
     featured: true,
     image: '/images/projects/sickle-cell.png',
     caseStudy: true,
+    deepDive: 'This project tackles sickle cell disease detection from microscopy images using a four-phase pipeline. Phase 1 segments individual red blood cells from stained blood smear images using Mask R-CNN. Phase 2 extracts 30 morphological and texture features per cell using PyRadiomics — capturing shape irregularities that distinguish sickled cells. Phase 3 applies PCA for dimensionality reduction followed by Gaussian Mixture Model clustering to group cells by morphology. Phase 4 aggregates cell-level predictions into an image-level classification using logistic regression, achieving 98%+ precision and recall. The pipeline is designed for clinical screening workflows where rapid, automated analysis of blood smears can assist pathologists.',
   },
   {
     id: 'signsentry',
@@ -155,6 +156,7 @@ export const projectData = [
     featured: true,
     image: '/images/projects/signsentry.png',
     caseStudy: true,
+    deepDive: 'Built in 36 hours at a hackathon, SignSentry is a real-time road sign detection system aimed at improving driver awareness. It uses a YOLO object detection model trained on a custom dataset curated via RoboFlow, covering speed limits, stop signs, yield signs and other critical road markers. When a sign is detected, the system pipes the classification through pyttsx3 for text-to-speech output, alerting the driver audibly without requiring them to look at a screen. The project reached the final Shark Tank round at the hackathon and aligns with the UN Sustainable Development Goal for Innovation and Infrastructure. The use case targets long-distance drivers and accessibility for visually impaired passengers.',
   },
   {
     id: 'splitwise',
@@ -168,7 +170,8 @@ export const projectData = [
     featured: true,
     image: '/images/projects/splitwise.jpeg',
     caseStudy: true,
-    liveUrl: 'https://splitwise-own.web.app'
+    liveUrl: 'https://splitwise-own.web.app',
+    deepDive: 'This app solves the common pain of splitting expenses during group trips. Built with Flutter and backed by Firebase for real-time data sync, it lets users log expenses, tag participants, and see live running balances. The core algorithm uses graph-based debt simplification — modeling the group\'s debts as a directed graph and reducing the number of transactions needed to settle up. Instead of everyone paying everyone else back individually, the app computes the minimal set of transfers. It supports multiple groups, expense categories, and works offline with local caching that syncs when connectivity returns.',
   },
   {
     id: 'flashcard-generator',
@@ -182,6 +185,7 @@ export const projectData = [
     featured: true,
     image: '/images/projects/flashcard-generator.png',
     caseStudy: true,
+    deepDive: 'Born out of GRE prep frustration, this tool automates the tedious process of turning vocabulary PDFs into Anki flashcards. It parses structured PDF content (word, definition, example sentence) using regex-based extraction hooks, handles edge cases like multi-line definitions and special characters, and outputs Anki-compatible decks. The Streamlit interface lets you preview cards before import, adjust extraction rules, and batch-process multiple PDFs. Throttled imports prevent Anki\'s rate limiter from blocking the sync. Built as a personal productivity tool but designed to be extensible for other PDF-to-flashcard workflows beyond GRE vocab.',
   },
   {
     id: 'face-emotions',
@@ -195,6 +199,7 @@ export const projectData = [
     featured: false,
     image: '/images/projects/face-emotion-classification.jpeg',
     caseStudy: false,
+    deepDive: 'A convolutional neural network built with Keras that classifies facial expressions into seven emotion categories: happy, sad, angry, disgust, surprise, fear and neutral. OpenCV handles face detection from webcam or image input, cropping and normalizing the face region before feeding it to the CNN. The model was trained on the FER-2013 dataset and uses data augmentation to handle class imbalance. Useful as a building block for applications like mood-aware interfaces, accessibility tools, or interactive installations that respond to user emotions in real time.',
   },
   {
     id: 'mynotes',
@@ -209,6 +214,7 @@ export const projectData = [
     image: '/images/projects/my-notes-app.png',
     caseStudy: false,
     liveUrl: 'rohit-notes.web.app',
+    deepDive: 'MyNotes is a clean, minimal note-taking app built with Flutter as a hands-on learning project. It supports creating, editing and deleting notes with a responsive Material Design interface. The app was my entry point into cross-platform mobile development — learning Flutter\'s widget tree, state management patterns, and the Dart language. While simple in scope, it laid the foundation for more complex Flutter projects like the Group Expense Splitter that followed.',
   },
   {
     id: 'tic-tac-toe',
@@ -222,6 +228,7 @@ export const projectData = [
     featured: false,
     image: '/images/projects/tic-tac-toe-logo.jpeg',
     caseStudy: false,
+    deepDive: 'A classic Tic-Tac-Toe game implemented in Java with a graphical interface — one of my earliest programming projects. Features a two-player mode with turn tracking, win/draw detection, and a reset mechanism. Built entirely from scratch using Java\'s Swing library for the GUI, it was an exercise in understanding event-driven programming, game state management, and rendering logic. It represents the starting point of my journey into software development.',
   },
 ];
 

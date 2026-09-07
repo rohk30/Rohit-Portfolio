@@ -62,19 +62,28 @@ function ProjectDetails() {
           </section>
         </div>
 
-        <section className="detail-story-placeholder">
-          <div className="section-kicker">DEEP DIVE</div>
-          <h2>The detailed story comes next.</h2>
-          <p>
-            This route is intentionally established now so major projects can grow into full case studies with architecture diagrams, experiments, decisions, results and media without changing the portfolio's routing model.
-          </p>
-          <div className="detail-placeholder-grid">
-            <div><span>01</span> Problem & context</div>
-            <div><span>02</span> Architecture & approach</div>
-            <div><span>03</span> Experiments & results</div>
-            <div><span>04</span> What I learned</div>
-          </div>
-        </section>
+        {project.deepDive ? (
+          <section className="detail-story-placeholder">
+            <div className="section-kicker">ABOUT THIS PROJECT</div>
+            <p style={{ maxWidth: '850px', marginTop: '0.8rem', color: 'var(--text-soft)', lineHeight: '1.75', fontSize: '1.02rem' }}>
+              {project.deepDive}
+            </p>
+          </section>
+        ) : (
+          <section className="detail-story-placeholder">
+            <div className="section-kicker">DEEP DIVE</div>
+            <h2>The detailed story comes next.</h2>
+            <p>
+              This route is intentionally established now so major projects can grow into full case studies with architecture diagrams, experiments, decisions, results and media without changing the portfolio's routing model.
+            </p>
+            <div className="detail-placeholder-grid">
+              <div><span>01</span> Problem & context</div>
+              <div><span>02</span> Architecture & approach</div>
+              <div><span>03</span> Experiments & results</div>
+              <div><span>04</span> What I learned</div>
+            </div>
+          </section>
+        )}
       </div>
     </PageTransition>
   );
