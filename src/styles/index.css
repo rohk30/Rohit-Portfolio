@@ -321,8 +321,8 @@ a { color: inherit; }
 .detail-header-grid p { max-width: 760px; margin-top: 1.2rem; color: var(--text-soft); font-size: 1.05rem; line-height: 1.75; }
 .detail-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem; margin-top: 1.5rem; }
 .detail-status { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--text-muted); font-size: 0.8rem; }
-.detail-visual { min-height: 360px; border: 1px solid var(--border); border-radius: 1.5rem; overflow: hidden; background: #0d1f0d; }
-.detail-visual img { width: 100%; height: 100%; min-height: 360px; object-fit: cover; display: block; }
+.detail-visual { border: 1px solid var(--border); border-radius: 1.5rem; overflow: hidden; background: #0d1f0d; display: flex; align-items: center; justify-content: center; }
+.detail-visual img { width: 100%; display: block; object-fit: contain; }
 .detail-content-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1rem; margin-top: 4rem; }
 .detail-panel { padding: 1.4rem; border: 1px solid var(--border); border-radius: 1.15rem; background: rgba(13,31,13,0.64); }
 .detail-tech-list, .detail-highlight-list { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1rem; }
@@ -392,6 +392,8 @@ a { color: inherit; }
 .project-card-updated-body { display: flex; flex-direction: column; flex: 1; padding: 1.35rem 1.4rem 1.4rem; }
 .project-card-image { height: 230px; overflow: hidden; background: linear-gradient(135deg, #0a2e2a, #0d1f0d); }
 .project-card-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 500ms ease; }
+.project-card-image--contain { background: #0d1f0d; padding: 1rem; }
+.project-card-image--contain img { object-fit: contain !important; }
 .project-card-updated:hover .project-card-image img { transform: scale(1.03); }
 .project-card-image-placeholder { position: relative; display: grid; place-items: center; color: var(--text-muted); font-size: 0.78rem; }
 .project-featured-label { display: inline-flex; align-items: center; gap: 0.35rem; width: max-content; color: var(--accent-gold); font: 600 0.64rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; }
@@ -440,7 +442,7 @@ a { color: inherit; }
 .experience-company-line { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:0.3rem; color:var(--accent-gold); font-size:0.78rem; }
 @media (max-width:640px) { .experience-card-heading { flex-direction:column; } }
 
-.detail-video { width:100%; height:100%; min-height:360px; object-fit:cover; display:block; background:#0d1f0d; }
+.detail-video { width:100%; height:auto; object-fit:contain; display:block; background:#0d1f0d; }
 
 /* Shot Navigation */
 .shot-navigation {

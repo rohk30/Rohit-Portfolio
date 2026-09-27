@@ -18,6 +18,7 @@ function ProjectCard({ project }) {
     githubUrl,
     featured = false,
     image,
+    imageFit = 'cover',
     caseStudy = false,
   } = project ?? {};
 
@@ -38,11 +39,11 @@ function ProjectCard({ project }) {
       aria-label={`Project: ${title}`}
     >
       {image ? (
-        <div className="project-card-image">
+        <div className={`project-card-image ${imageFit === 'contain' ? 'project-card-image--contain' : ''}`}>
           {imageError ? (
             <div className="project-placeholder"><ImageOff /><span>Image unavailable</span></div>
           ) : (
-            <img src={image} alt={`${title} preview`} loading="lazy" onError={() => setImageError(true)} />
+            <img src={image} alt={`${title} preview`} loading="lazy" onError={() => setImageError(true)} style={{ objectFit: imageFit }} />
           )}
         </div>
       ) : (
