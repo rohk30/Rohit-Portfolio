@@ -254,11 +254,11 @@ a { color: inherit; }
 .company-role { margin: 0; color: var(--text-muted); font-size: 0.82rem; line-height: 1.4; }
 
 .project-showcase-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.15rem; }
-.project-showcase-card { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: 1.4rem; background: linear-gradient(150deg, rgba(13,31,13,0.82), rgba(10,46,42,0.82)); min-height: 480px; transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease; }
+.project-showcase-card { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: 1.4rem; background: linear-gradient(150deg, rgba(13,31,13,0.82), rgba(10,46,42,0.82)); min-height: auto; transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease; cursor: pointer; }
 .project-showcase-card:hover { transform: translateY(-5px); border-color: rgba(201,162,39,0.3); box-shadow: 0 30px 80px rgba(0,0,0,0.26); }
-.project-showcase-card-large { grid-column: span 2; min-height: 570px; }
-.project-visual { position: relative; height: 260px; overflow: hidden; background: linear-gradient(135deg, #0a2e2a, #0d1f0d); }
-.project-showcase-card-large .project-visual { height: 330px; }
+.project-showcase-card-large { grid-column: span 1; }
+.project-visual { position: relative; height: 180px; overflow: hidden; background: linear-gradient(135deg, #0a2e2a, #0d1f0d); }
+.project-showcase-card-large .project-visual { height: 180px; }
 .project-visual img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 600ms cubic-bezier(.2,.7,.2,1); }
 .project-showcase-card:hover .project-visual img { transform: scale(1.025); }
 .project-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 52%, rgba(13,31,13,0.75)); pointer-events: none; }
@@ -282,6 +282,7 @@ a { color: inherit; }
 .skill-note { color: var(--text-muted); font: 500 0.66rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; }
 .skill-marquee-shell { overflow: hidden; position: relative; padding: 1rem 0; mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent); }
 .skill-marquee { display: flex; width: max-content; gap: 0.9rem; animation: marquee 26s linear infinite; }
+.skill-marquee-shell:hover .skill-marquee { animation-play-state: paused; }
 .skill-logo { display: inline-flex; align-items: center; justify-content: center; min-width: 100px; height: 90px; padding: 0.7rem 0.9rem; border: 1px solid var(--border); border-radius: 1.1rem; background: rgba(13,31,13,0.72); transition: transform 200ms ease, border-color 200ms ease; }
 .skill-logo:hover { transform: translateY(-4px); border-color: rgba(201,162,39,0.3); }
 .skill-logo-inner { display: inline-flex; flex-direction: column; align-items: center; gap: 0.4rem; }
