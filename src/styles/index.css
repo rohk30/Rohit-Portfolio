@@ -681,6 +681,12 @@ a { color: inherit; }
   background: rgba(8, 25, 18, 0.76);
 }
 
+.cricket-hero__bowl-cta button:focus-visible {
+  outline: 2px solid rgba(230, 189, 105, 0.8);
+  outline-offset: 4px;
+  border-color: rgba(230, 189, 105, 0.72);
+}
+
 .cricket-hero__ball-icon {
   width: 18px;
   height: 18px;

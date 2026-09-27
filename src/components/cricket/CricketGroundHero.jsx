@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import stadiumImage from '../../assets/images/cricket-stadium-hero.png';
@@ -35,6 +35,14 @@ function CricketGroundHero() {
   const [animationState, setAnimationState] = useState('idle');
   const [selectedShot, setSelectedShot] = useState(null);
   const [cameraReady, setCameraReady] = useState(false);
+  const bowlBtnRef = useRef(null);
+
+  // Auto-focus the bowl button so keyboard users can press Enter/Space immediately
+  useEffect(() => {
+    if (animationState === 'idle' && bowlBtnRef.current) {
+      bowlBtnRef.current.focus();
+    }
+  }, [animationState]);
 
   const startExperience = useCallback(() => {
     setSelectedShot(null);
@@ -269,7 +277,7 @@ function CricketGroundHero() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ delay: 0.4, duration: 0.7 }}
           >
-            <button type="button" onClick={startExperience} aria-label="Bowl to explore the portfolio">
+            <button ref={bowlBtnRef} type="button" onClick={startExperience} aria-label="Bowl to explore the portfolio">
               <span className="cricket-hero__ball-icon" aria-hidden="true" />
               <span>Bowl to explore</span>
               <span className="cricket-hero__cta-arrow" aria-hidden="true">↗</span>
